@@ -1,0 +1,105 @@
+.usercard-container {
+  width: 650px;
+  background-color: #eff2f5;
+  border-left: 1px solid #d1d7db;
+}
+
+.usercard-header {
+  display: flex;
+  flex-direction: row;
+  height: 59px;
+  background-color: #eff2f5;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.usercard-body {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: calc(100vh - 59px);
+}
+
+.usercard-body > div {
+  background-color: #fff;
+  display: flex;
+}
+
+.user-box-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.user-card-about {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 15px 30px;
+  gap: 5px;
+}
+
+.user-card-media {
+  padding: 15px 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-card-other {
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.user-card-other > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-height: 50px;
+}
+
+.user-card-other > div > div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 200px;
+}
+
+svg {
+  width: 50px;
+  padding: 0;
+}
+
+.user-card-ops {
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  color: red;
+  font-size: 26px;
+  gap: 30px;
+}
+
+.user-card-ops > div {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-size: 26px;
+  height: 30px;
+}
+
+.user-card-ops > div > p {
+  font-weight: 400;
+}

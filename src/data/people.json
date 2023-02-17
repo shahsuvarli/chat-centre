@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "John",
+    "surname": "Doe",
+    "phone": "555-1234",
+    "image": "https://randomuser.me/api/portraits/men/1.jpg",
+    "text": "The sun set behind the mountains, casting a warm glow across the valley."
+  },
+  {
+    "id": 2,
+    "name": "Jane",
+    "surname": "Smith",
+    "phone": "555-5678",
+    "image": "https://randomuser.me/api/portraits/men/2.jpg",
+    "text": "The aroma of fresh baked bread wafted through the air, making my stomach growl."
+  },
+  {
+    "id": 3,
+    "name": "Bob",
+    "surname": "Johnson",
+    "phone": "555-9012",
+    "image": "https://randomuser.me/api/portraits/men/3.jpg",
+    "text": "She took a deep breath and plunged into the icy water, feeling the shock of the cold all the way to her bones"
+  },
+  {
+    "id": 4,
+    "name": "Alice",
+    "surname": "Williams",
+    "phone": "555-3456",
+    "image": "https://randomuser.me/api/portraits/men/4.jpg",
+    "text": "The concert was so loud that I could feel the bass reverberating through my entire body."
+  },
+  {
+    "id": 5,
+    "name": "David",
+    "surname": "Brown",
+    "phone": "555-7890",
+    "image": "https://randomuser.me/api/portraits/men/5.jpg",
+    "text": "The old man sat on his porch, watching the world go by with a wistful look in his eye."
+  },
+  {
+    "id": 6,
+    "name": "Sarah",
+    "surname": "Garcia",
+    "phone": "555-1234",
+    "image": "https://randomuser.me/api/portraits/men/6.jpg",
+    "text": "The leaves rustled in the breeze, creating a soothing sound that lulled me to sleep."
+  },
+  {
+    "id": 7,
+    "name": "Michael",
+    "surname": "Jones",
+    "phone": "555-5678",
+    "image": "https://randomuser.me/api/portraits/men/7.jpg",
+    "text": "She closed her eyes and savored the flavor of the rich chocolate melting in her mouth."
+  },
+  {
+    "id": 8,
+    "name": "Karen",
+    "surname": "Brown",
+    "phone": "555-9012",
+    "image": "https://randomuser.me/api/portraits/men/8.jpg",
+    "text": "The rain pelted against the windows, making it impossible to hear anything else."
+  },
+  {
+    "id": 8,
+    "name": "Karen",
+    "surname": "Brown",
+    "phone": "555-9012",
+    "image": "https://randomuser.me/api/portraits/men/8.jpg",
+    "text": "The rain pelted against the windows, making it impossible to hear anything else."
+  }
+]
