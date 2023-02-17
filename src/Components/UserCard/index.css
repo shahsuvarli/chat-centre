@@ -4,6 +4,10 @@
   border-left: 1px solid #d1d7db;
 }
 
+.closed{
+  display: none;
+}
+
 .usercard-header {
   display: flex;
   flex-direction: row;
@@ -14,6 +18,10 @@
   padding: 10px;
   box-sizing: border-box;
   gap: 20px;
+}
+
+.usercard-header>svg:hover{
+  cursor: pointer;
 }
 
 .usercard-body {

@@ -5,9 +5,10 @@ import { Typography } from "@mui/material";
 import ChatHeader from "./ChatHeader";
 import ChatFooter from "./ChatFooter";
 import ChatBody from "./ChatBody";
+import { useSelector } from "react-redux";
 
 function Chat() {
-  const [user, setUser] = React.useState(true);
+  const {user} =useSelector(state=>state.user)
   return (
     <div className="chat-container">
       {user ? (

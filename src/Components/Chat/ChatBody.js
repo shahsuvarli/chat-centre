@@ -6,7 +6,7 @@ function ChatBody() {
     <div className="chat-body">
       {messages.map((message) => {
         return (
-          <div className="message-container">
+          <div className="message-container" key={message.id}>
             <span className="message-content">{message.message}</span>
           </div>
         );

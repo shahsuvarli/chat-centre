@@ -11,6 +11,10 @@
   padding: 0 25px;
 }
 
+.chat-header:hover{
+  cursor: pointer;
+}
+
 .header-user-info {
   display: flex;
   flex-direction: row;
