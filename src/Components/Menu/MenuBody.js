@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MdFilterList } from "react-icons/md";
 import { BsSearch } from "react-icons/bs";
-import people from "../../data/people.json";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,35 +8,37 @@ import { selectUser } from "../../store/user";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
-  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { people } = useSelector((state) => state.user);
 
   const handleUser = (person) => {
     dispatch(selectUser(person));
   };
 
-  const [data, setData] = React.useState([]);
-  useEffect(() => {
-    setData(people);
-  }, []);
-
   return (
     <div className="menu-body">
       <div className="search-bar">
         <div className="textbox-container">
-          <BsSearch size={20} />
+          <label htmlFor="search">
+            <BsSearch size={20} />
+          </label>
           <input
             placeholder="Search or start new chat"
             value={search}
+            name="search"
+            id="search"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <MdFilterList size={23} />
       </div>
       <div className="chats-container">
-        {data
-          .filter((data) =>
-            data.name.concat(` ${data.surname}`).toLowerCase().includes(search)
+        {people
+          .filter((person) =>
+            person.name
+              .concat(` ${person.surname}`)
+              .toLowerCase()
+              .includes(search)
           )
           .map((person) => {
             return (
@@ -55,8 +56,10 @@ function MenuBody() {
                     color="#677782"
                     variant="body1"
                     className="message"
+                    textAlign={"left"}
+                    fontSize={15}
                   >
-                    {person.text}
+                    {person.messages[person.messages.length - 1]}
                   </Typography>
                 </div>
               </Box>

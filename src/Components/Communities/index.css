@@ -1,0 +1,10 @@
+.communities-container {
+  width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 17px;
+  padding: 30px 30px;
+  box-sizing: border-box;
+}

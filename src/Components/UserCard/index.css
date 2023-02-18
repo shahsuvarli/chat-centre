@@ -4,7 +4,7 @@
   border-left: 1px solid #d1d7db;
 }
 
-.closed{
+.closed {
   display: none;
 }
 
@@ -20,7 +20,7 @@
   gap: 20px;
 }
 
-.usercard-header>svg:hover{
+.usercard-header > svg:hover {
   cursor: pointer;
 }
 
@@ -84,6 +84,7 @@
   align-items: flex-start;
   flex-direction: column;
   width: 200px;
+  text-align: left;
 }
 
 svg {
@@ -92,20 +93,26 @@ svg {
 }
 
 .user-card-ops {
-  padding: 25px 30px;
+  /* padding: 25px 30px; */
   display: flex;
   flex-direction: column;
   color: red;
   font-size: 26px;
-  gap: 30px;
+  /* gap: 30px; */
 }
 
 .user-card-ops > div {
+  padding: 20px;
   display: flex;
   flex-direction: row;
   gap: 15px;
   font-size: 26px;
   height: 30px;
+}
+
+.user-card-ops > div:hover {
+  background-color: #eff2f5;
+  cursor: pointer;
 }
 
 .user-card-ops > div > p {

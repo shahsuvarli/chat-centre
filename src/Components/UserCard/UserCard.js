@@ -11,13 +11,16 @@ import { FaLock } from "react-icons/fa";
 import { ImBlocked } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { hanldeInfo } from "../../store/user";
+import { deleteChat, hanldeInfo } from "../../store/user";
 
 function UserCard() {
   const { info, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleClose = () => {
     dispatch(hanldeInfo(false));
+  };
+  const handleDelete = () => {
+    dispatch(deleteChat());
   };
   return (
     <div className={`${info || "closed"} usercard-container`}>
@@ -39,7 +42,7 @@ function UserCard() {
           <Typography color={"#667681"} fontSize={15}>
             About
           </Typography>
-          <Typography>Всем привет! Я использую WhatsApp</Typography>
+          <Typography>{user.about}</Typography>
         </Box>
         <Box className="user-card-media">
           <Typography color={"#667681"} fontSize={15}>
@@ -91,7 +94,7 @@ function UserCard() {
             <AiFillDislike />
             <Typography>Report {user.name}</Typography>
           </div>
-          <div>
+          <div onClick={handleDelete}>
             <MdDelete />
             <Typography>Delete chat</Typography>
           </div>

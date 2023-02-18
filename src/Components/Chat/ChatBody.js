@@ -1,13 +1,14 @@
 import React from "react";
-import messages from "../../data/messages.json";
+import { useSelector } from "react-redux";
 
 function ChatBody() {
+  const {user}=useSelector(state=>state.user)
   return (
     <div className="chat-body">
-      {messages.map((message) => {
+      {user.messages.map((message, index) => {
         return (
-          <div className="message-container" key={message.id}>
-            <span className="message-content">{message.message}</span>
+          <div className="message-container" key={index}>
+            <span className="message-content">{message}</span>
           </div>
         );
       })}

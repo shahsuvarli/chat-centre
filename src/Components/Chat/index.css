@@ -39,6 +39,9 @@
   flex-direction: column;
   background-repeat: repeat;
   justify-content: flex-end;
+  overflow-y: scroll;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .chat-footer {
@@ -86,17 +89,28 @@
 }
 
 .message-container {
-  height: 50px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  gap: 10px;
+  margin-right: 65px;
+  margin-bottom: 10px;
 }
 
 .message-content {
   background-color: #d9fdd2;
-  height: 30px;
-  margin-right: 30px;
+  box-shadow: 1px 1px #fff;
+  color: #111b21;
+  min-height: 20px;
   padding: 5px 20px;
   border-radius: 10px;
-  box-shadow: 1px 1px #fff;
+  font-size: 14.2px;
+  font-family: Helvetica, sans-serif;
+  max-width: 80%;
+  word-wrap: break-word;
+  text-align: left;
+  line-height: 1.5;
+  font-weight: 500;
 }
