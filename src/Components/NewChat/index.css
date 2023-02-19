@@ -1,3 +1,40 @@
-.newchat-container{
-    width: 420px;
+.newchat-container {
+  width: 420px;
+  padding: 10px, 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.newchat-body {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.newchat-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 10px;
+  border-top: 1px solid #e9edef;
+}
+
+.newchat-card:hover{
+  background-color: #eff2f5;
+cursor: pointer;
+}
+
+.newchat-card > p {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.new-people-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }

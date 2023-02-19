@@ -19,7 +19,7 @@ function Chat() {
         </div>
       ) : (
         <div className="newpage-container">
-          <img src={require("../../images/new.png")} width="500px" alt="new" />
+          <img src={require("../../images/new.png")} width="50%" alt="new" />
           <div className="encryption">
             <FaLock color="#54646f" size={10} />
             <Typography color="#8696a0">End-to-end encrypted</Typography>

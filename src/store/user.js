@@ -3,9 +3,20 @@ import people from "../data/people.json";
 
 const initialState = {
   admin: {
-    img: "https://i.ibb.co/GV4pCwH/IMG-4973-1.png",
-    username: "Shahsuvarli",
-    about: "Available",
+    id: 0,
+    name: "Elvin",
+    surname: "Shahsuvarli",
+    username:'Shahsuvarli',
+    phone: "351 9033",
+    image: "https://i.ibb.co/GV4pCwH/IMG-4973-1.png",
+    about: "Software Developer",
+    messages: [
+      "Hey there!",
+      "I'm good, thanks for asking.",
+      "Yeah, it's beautiful outside.",
+      "Just hanging out at home.",
+      "You too, take care!",
+    ],
   },
   user: false,
   info: false,
@@ -39,12 +50,18 @@ const userSlicer = createSlice({
     callDrawer: (state, action) => {
       state.drawer = { open: action.payload.open, name: action.payload.name };
     },
-    closeDrawer:(state, action)=>{
-      state.drawer = {open:false, name:''}
-    }
+    closeDrawer: (state, action) => {
+      state.drawer = { open: false, name: "" };
+    },
   },
 });
 
-export const { selectUser, hanldeInfo, sendMessage, deleteChat, callDrawer, closeDrawer } =
-  userSlicer.actions;
+export const {
+  selectUser,
+  hanldeInfo,
+  sendMessage,
+  deleteChat,
+  callDrawer,
+  closeDrawer,
+} = userSlicer.actions;
 export default userSlicer.reducer;

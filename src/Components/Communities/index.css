@@ -8,3 +8,7 @@
   padding: 30px 30px;
   box-sizing: border-box;
 }
+
+.communities-container>button:hover{
+  background-color: #01604e;
+}

@@ -34,11 +34,12 @@ function MenuBody() {
       </div>
       <div className="chats-container">
         {people
-          .filter((person) =>
-            person.name
-              .concat(` ${person.surname}`)
-              .toLowerCase()
-              .includes(search)
+          .filter(
+            (person) =>
+              person.name
+                .concat(` ${person.surname}`)
+                .toLowerCase()
+                .includes(search) && person.messages.length
           )
           .map((person) => {
             return (

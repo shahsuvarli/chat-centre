@@ -48,7 +48,7 @@ function UserCard() {
           <Typography color={"#667681"} fontSize={15}>
             Media, links and docs
           </Typography>
-          <Button endIcon={<ArrowForwardIosIcon />}>3</Button>
+          <Button endIcon={<ArrowForwardIosIcon />}>0</Button>
         </Box>
 
         <Box className="user-card-other">

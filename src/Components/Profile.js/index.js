@@ -24,7 +24,7 @@ function Profile() {
         <Avatar
           sx={{ width: "200px", height: "200px" }}
           className="profile-avatar"
-          src={admin.img}
+          src={admin.image}
         />
       </Box>
       <Box className="profile-data profile-box">

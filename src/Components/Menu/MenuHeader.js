@@ -16,7 +16,7 @@ function MenuHeader() {
   };
   return (
     <div className="menu-header">
-      <Avatar src={admin.img} onClick={() => handleDrawer("Profile")} />
+      <Avatar src={admin.image} onClick={() => handleDrawer("Profile")} />
       <div className="menu-icons">
         <BsPeopleFill
           size={size}
