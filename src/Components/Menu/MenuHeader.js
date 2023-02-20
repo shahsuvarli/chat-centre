@@ -5,14 +5,14 @@ import { BiLoaderCircle } from "react-icons/bi";
 import { BsFillChatLeftTextFill, BsPeopleFill } from "react-icons/bs";
 import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { callDrawer } from "../../store/user";
+import { handleLeftDrawer } from "../../store/user";
 
 function MenuHeader() {
   const size = 23;
   const { admin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleDrawer = (name) => {
-    dispatch(callDrawer({ open: true, name }));
+    dispatch(handleLeftDrawer({ open: true, name }));
   };
   return (
     <div className="menu-header">

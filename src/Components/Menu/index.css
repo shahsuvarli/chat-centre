@@ -18,6 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 200px;
 }
 
 .menu-icons > *:hover {
@@ -32,6 +33,7 @@
   box-sizing: border-box;
   justify-content: space-evenly;
   align-items: center;
+  gap: 10px;
 }
 
 .textbox-container {
@@ -90,4 +92,8 @@
   text-overflow: ellipsis;
   width: 320px;
   white-space: nowrap;
+}
+
+.icon{
+  width: 30px;
 }

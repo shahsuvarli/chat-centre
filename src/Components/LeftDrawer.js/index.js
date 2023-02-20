@@ -2,17 +2,18 @@ import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import "./index.css";
 import { useSelector } from "react-redux";
-import Profile from "../Profile.js";
+import Profile from "../Profile.js/index.js";
 import DrawerHeader from "./DrawerHeader";
 import Communities from "../Communities";
 import NewChat from "../NewChat";
 
-export default function TemporaryDrawer() {
+export default function LeftDrawer() {
   const [component, setComponent] = React.useState(<div></div>);
-  const { drawer } = useSelector((state) => state.user);
+  const { leftDrawer } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    switch (drawer.name) {
+    console.log('useeffect')
+    switch (leftDrawer.name) {
       case "Profile":
         setComponent(<Profile />);
         break;
@@ -25,7 +26,7 @@ export default function TemporaryDrawer() {
       default:
         break;
     }
-  }, [drawer.name]);
+  }, [leftDrawer.name]);
 
   const list = () => {
     return (
@@ -37,7 +38,7 @@ export default function TemporaryDrawer() {
   };
   return (
     <React.Fragment>
-      <Drawer open={drawer.open} BackdropProps={{ style: { opacity: 0 } }}>
+      <Drawer open={leftDrawer.open} BackdropProps={{ style: { opacity: 0 } }}>
         {list()}
       </Drawer>
     </React.Fragment>

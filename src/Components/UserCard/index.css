@@ -72,8 +72,7 @@
 
 .user-card-other > div {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  align-items: flex-start;
   gap: 20px;
   width: 100%;
   min-height: 50px;
@@ -87,18 +86,16 @@
   text-align: left;
 }
 
-svg {
-  width: 50px;
-  padding: 0;
+.user-card-other > div > div > p:not(:first-child) {
+  font-size: 14px;
+  width: 250px;
 }
 
 .user-card-ops {
-  /* padding: 25px 30px; */
   display: flex;
   flex-direction: column;
   color: red;
   font-size: 26px;
-  /* gap: 30px; */
 }
 
 .user-card-ops > div {
@@ -117,4 +114,8 @@ svg {
 
 .user-card-ops > div > p {
   font-weight: 400;
+}
+
+.starred-messages {
+  padding: 5px 0;
 }

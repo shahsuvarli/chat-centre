@@ -6,7 +6,7 @@ const initialState = {
     id: 0,
     name: "Elvin",
     surname: "Shahsuvarli",
-    username:'Shahsuvarli',
+    username: "Shahsuvarli",
     phone: "351 9033",
     image: "https://i.ibb.co/GV4pCwH/IMG-4973-1.png",
     about: "Software Developer",
@@ -19,9 +19,9 @@ const initialState = {
     ],
   },
   user: false,
-  info: false,
   people,
-  drawer: { open: false, name: "" },
+  leftDrawer: { open: false, name: "" },
+  rightDrawer: { open: false, name: "" },
 };
 
 const userSlicer = createSlice({
@@ -30,9 +30,6 @@ const userSlicer = createSlice({
   reducers: {
     selectUser: (state, action) => {
       state.user = action.payload;
-    },
-    hanldeInfo: (state, action) => {
-      state.info = action.payload;
     },
     sendMessage: (state, action) => {
       const newMessages = [...state.user.messages, action.payload];
@@ -47,21 +44,26 @@ const userSlicer = createSlice({
       state.info = false;
       state.user = false;
     },
-    callDrawer: (state, action) => {
-      state.drawer = { open: action.payload.open, name: action.payload.name };
+    handleLeftDrawer: (state, action) => {
+      state.leftDrawer = {
+        open: action.payload.open,
+        name: action.payload.name,
+      };
     },
-    closeDrawer: (state, action) => {
-      state.drawer = { open: false, name: "" };
+    handleRightDrawer: (state, action) => {
+      state.rightDrawer = {
+        open: action.payload.open,
+        name: action.payload.name,
+      };
     },
   },
 });
 
 export const {
   selectUser,
-  hanldeInfo,
   sendMessage,
   deleteChat,
-  callDrawer,
-  closeDrawer,
+  handleLeftDrawer,
+  handleRightDrawer,
 } = userSlicer.actions;
 export default userSlicer.reducer;

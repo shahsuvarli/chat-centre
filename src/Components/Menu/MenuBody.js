@@ -30,7 +30,7 @@ function MenuBody() {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <MdFilterList size={23} />
+        <MdFilterList size={23} color="#54646f" className="icon" />
       </div>
       <div className="chats-container">
         {people

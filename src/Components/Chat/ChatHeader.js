@@ -3,13 +3,13 @@ import React from "react";
 import { BsSearch } from "react-icons/bs";
 import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { hanldeInfo } from "../../store/user";
+import { handleRightDrawer } from "../../store/user";
 
 function ChatHeader() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleOpen = () => {
-    dispatch(hanldeInfo(true));
+    dispatch(handleRightDrawer({open:true, name:'User card'}));
   };
   return (
     <div className="chat-header" onClick={handleOpen}>
