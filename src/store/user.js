@@ -33,10 +33,18 @@ const userSlicer = createSlice({
       state.user = action.payload;
     },
     sendMessage: (state, action) => {
-      const newMessages = [...state.user.messages, action.payload];
+      const messageObject = {
+        text: action.payload,
+        timestamp: new Date().toLocaleString(),
+        read: true,
+        isSenderMe: true,
+      };
+      const newMessages = [...state.user.messages, messageObject];
       state.people.find((person) => person.id === state.user.id).messages =
         newMessages;
       state.user.messages = newMessages;
+      console.log(new Date().toLocaleTimeString())
+      // console.log(new Date().toISOString())
     },
     deleteChat: (state) => {
       state.people = state.people.filter(

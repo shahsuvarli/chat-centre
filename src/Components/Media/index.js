@@ -16,7 +16,6 @@ import Media from "./Media";
 import Docs from "./Docs";
 import Links from "./Links";
 import Download from "@mui/icons-material/Download";
-import { Close } from "@mui/icons-material";
 
 export default function UserMedia() {
   const { user, selectedMedia } = useSelector((state) => state.user);
@@ -40,6 +39,8 @@ export default function UserMedia() {
       case "Links":
         setComponent(<Links data={data.list} />);
         break;
+      default:
+        break;
     }
   }, [value]);
 
@@ -55,7 +56,7 @@ export default function UserMedia() {
             <div>
               {selectedMedia.length ? (
                 <>
-                  <CloseIcon onClick={()=>dispatch(selectMediaItem([]))} />
+                  <CloseIcon onClick={() => dispatch(selectMediaItem([]))} />
                   <Typography variant="h1" fontSize={19} fontWeight={500}>
                     {selectedMedia.length} selected
                   </Typography>

@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-.media-header-icons{
+.media-header-icons {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,7 +16,7 @@
   justify-content: space-between;
 }
 
-.media-header-icons>div{
+.media-header-icons > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   color: #fff;
 }
 
-.media-header-icons svg{
+.media-header-icons svg {
   width: 25px;
   height: 25px;
 }
@@ -60,6 +60,7 @@
   display: flex;
   box-sizing: border-box;
 }
+
 .media-container {
   flex-wrap: wrap;
   gap: 15px;
@@ -101,7 +102,7 @@
   gap: 5px;
 }
 
-.docs-card-container >span{
+.docs-card-container > span {
   visibility: hidden;
   margin-left: 5px;
 }
@@ -110,7 +111,7 @@
   background-color: #cdd8db;
   cursor: pointer;
 }
-.docs-card-container:hover >span{
+.docs-card-container:hover > span {
   visibility: visible;
 }
 
@@ -130,4 +131,39 @@
 .docs-card div {
   text-align: left;
   width: 60%;
+}
+
+/* LINK */
+.links-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.link-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+}
+
+.link-card-container:hover {
+  background-color: #aab3b6;
+  cursor: pointer;
+}
+
+.link-preview {
+  background-color: #d9fdd2;
+  width: 89%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 1px 1px #9da6ab;
+}
+
+.link-preview {
+  padding: 10px;
 }

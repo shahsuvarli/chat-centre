@@ -67,28 +67,33 @@ function NewChat() {
         <Typography color={"#04a784"} margin={3}>
           #
         </Typography>
-        {people.map((person) => {
-          return (
-            <div
-              className="newchat-card"
-              key={person.id}
-              onClick={() => handleChat(person)}
-            >
-              <Avatar
-                sx={{ backgroundColor: "#04a784", width: 50, height: 50 }}
-                src={person.image}
-              ></Avatar>
-              <div className="new-people-card">
-                <Typography>
-                  {person.name} {person.surname}
-                </Typography>
-                <Typography color={"#667781"} fontSize={15}>
-                  {person.about}
-                </Typography>
+        {people
+          .filter((a) => a.id)
+          .sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          })
+          .map((person) => {
+            return (
+              <div
+                className="newchat-card"
+                key={person.id}
+                onClick={() => handleChat(person)}
+              >
+                <Avatar
+                  sx={{ backgroundColor: "#04a784", width: 50, height: 50 }}
+                  src={person.image}
+                ></Avatar>
+                <div className="new-people-card">
+                  <Typography>
+                    {person.name} {person.surname}
+                  </Typography>
+                  <Typography color={"#667781"} fontSize={15}>
+                    {person.about}
+                  </Typography>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

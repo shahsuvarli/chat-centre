@@ -41,6 +41,14 @@ function MenuBody() {
                 .toLowerCase()
                 .includes(search) && person.messages.length
           )
+          .sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          })
+          .sort((a, b) => {
+            return b.messages[b.messages.length - 1].timestamp.localeCompare(
+              a.messages[a.messages.length - 1].timestamp
+            );
+          })
           .map((person) => {
             return (
               <Box
@@ -50,15 +58,22 @@ function MenuBody() {
               >
                 <Avatar sx={{ width: 50, height: 50 }} src={person.image} />
                 <div className="menu-chat-body">
-                  <Typography variant="body1">
-                    {person.name} {person.surname}
-                  </Typography>
+                  <div>
+                    <Typography variant="body1">
+                      {person.name} {person.surname}
+                    </Typography>
+                    <Typography color="#677782" fontSize={13}>
+                      {person.messages[
+                        person.messages.length - 1
+                      ].timestamp.slice(11, 16)}
+                    </Typography>
+                  </div>
                   <Typography
                     color="#677782"
+                    fontSize={15}
                     variant="body1"
                     className="message"
                     textAlign={"left"}
-                    fontSize={15}
                   >
                     {person.messages[person.messages.length - 1].text}
                   </Typography>
