@@ -1,0 +1,133 @@
+.media-header {
+  width: 420px;
+  background-color: #008069;
+  height: 128px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.media-header-icons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 20px 0 20px;
+  justify-content: space-between;
+}
+
+.media-header-icons>div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+}
+
+.media-header-icons svg{
+  width: 25px;
+  height: 25px;
+}
+
+.media-data-container {
+  height: 100%;
+  width: 100%;
+  background-color: #eff2f5;
+}
+
+.no-media-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #8696a0;
+  font-size: 17px;
+}
+
+.media-tabs button {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+/* MEDIA */
+.media-container,
+.docs-container,
+.links-container {
+  height: 100%;
+  width: 100%;
+  padding: 20px 15px;
+  display: flex;
+  box-sizing: border-box;
+}
+.media-container {
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.media-card {
+  width: 120px;
+  height: 120px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c1cdd4;
+  transition: all 0.2s ease-in-out;
+}
+
+.media-card:hover {
+  background-color: #aab3b6;
+}
+
+.media-card img {
+  height: 90%;
+  width: 90%;
+  object-fit: cover;
+}
+
+/* DOCS */
+.docs-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.docs-card-container {
+  width: calc(100% + 30px);
+  display: flex;
+  height: 110px;
+  align-items: center;
+  gap: 5px;
+}
+
+.docs-card-container >span{
+  visibility: hidden;
+  margin-left: 5px;
+}
+
+.docs-card-container:hover {
+  background-color: #cdd8db;
+  cursor: pointer;
+}
+.docs-card-container:hover >span{
+  visibility: visible;
+}
+
+.docs-card {
+  width: 320px;
+  background-color: #d9fdd2;
+  height: 80px;
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 1px 1px #9da6ab;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.docs-card div {
+  text-align: left;
+  width: 60%;
+}

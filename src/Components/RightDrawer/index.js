@@ -3,6 +3,7 @@ import Drawer from "@mui/material/Drawer";
 import "./index.css";
 import { useSelector } from "react-redux";
 import NewUserCard from "../UserCard/NewUserCard";
+import UserMedia from "../Media";
 
 export default function RightDrawer() {
   const [component, setComponent] = React.useState(<div></div>);
@@ -12,6 +13,9 @@ export default function RightDrawer() {
     switch (rightDrawer.name) {
       case "User card":
         setComponent(<NewUserCard />);
+        break;
+      case "Media":
+        setComponent(<UserMedia />);
         break;
       default:
         break;
@@ -27,7 +31,6 @@ export default function RightDrawer() {
         anchor="right"
         open={rightDrawer.open}
         BackdropProps={{ style: { opacity: 0 } }}
-        // sx={{ background: "red" }}
       >
         {list()}
       </Drawer>

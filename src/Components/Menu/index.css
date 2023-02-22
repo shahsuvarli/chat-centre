@@ -49,6 +49,15 @@
   height: 100%;
 }
 
+.textbox-container label{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  margin-left: 10px;
+}
+
 .textbox-container > input {
   background-color: transparent;
   border: none;

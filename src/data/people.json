@@ -1,50 +1,163 @@
 [
   {
     "id": 1,
-    "name": "Kenan",
-    "surname": "Niyazov",
+    "name": "Dwight",
+    "surname": "Schrute",
     "phone": "555-1234",
-    "image": "https://randomuser.me/api/portraits/men/1.jpg",
+    "image": "https://www.myany.city/sites/default/files/styles/scaled_cropped_medium__260x260/public/field/image/node-related-images/sample-dwight-k-schrute.jpg",
     "text": "The sun set behind the mountains, casting a warm glow across the valley.",
     "about": "Passionate cook and foodie enthusiast",
     "messages": [
-      "Hey there!",
-      "I'm good, thanks for asking.",
-      "Yeah, it's beautiful outside.",
-      "Just hanging out at home.",
-      "You too, take care!"
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      }
+    ],
+    "media": [
+      {
+        "name": "Media",
+        "list": [
+          "https://fastly.picsum.photos/id/1054/200/300.jpg?hmac=2AMkQJkHozCbGVYoPJsFwSYmOfmPcPMYd0RtXMm-I2A",
+          "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+          "https://randomuser.me/api/portraits/women/8.jpg"
+        ]
+      },
+      { "name": "Docs", "list": ["invoice.pdf"] },
+      { "name": "Links", "list": ["facebook.com", "twitter.com"] }
     ]
   },
   {
     "id": 2,
-    "name": "Jane",
-    "surname": "Smith",
+    "name": "Michael",
+    "surname": "Scott",
     "phone": "555-5678",
-    "image": "https://randomuser.me/api/portraits/men/2.jpg",
+    "image": "https://www.myany.city/sites/default/files/styles/scaled_cropped_medium__260x260/public/field/image/node-related-images/mayor2.jpg",
     "text": "The aroma of fresh baked bread wafted through the air, making my stomach growl.",
     "about": "Adventure seeker with wanderlust soul.",
     "messages": [
-      "Good morning!",
-      "I'm a bit tired today.",
-      "I wish it was warmer.",
-      "Going to work soon.",
-      "Talk to you later!"
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      }
+    ],
+    "media": [
+      {
+        "name": "Media",
+        "list": []
+      },
+      { "name": "Docs", "list": [] },
+      { "name": "Links", "list": [] }
     ]
   },
   {
     "id": 3,
-    "name": "Bob",
-    "surname": "Johnson",
+    "name": "Jim",
+    "surname": "Halpert",
     "phone": "555-9012",
-    "image": "https://randomuser.me/api/portraits/men/3.jpg",
+    "image": "https://pbs.twimg.com/profile_images/1524026106642599936/Ijw8AiMO_400x400.jpg",
     "text": "She took a deep breath and plunged into the icy water, feeling the shock of the cold all the way to her bones",
     "about": "Nature lover and outdoor enthusiast.",
     "messages": [
-      "Hola!",
-      "Estoy bien, ¿y tú?",
-      "El clima está agradable.",
-      "Trabajando un poco.",
-      "¡Hasta pronto!"
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      }
     ]
   },
   {

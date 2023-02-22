@@ -1,32 +1,166 @@
 [
   {
-    "id": 1,
-    "message": "The quick brown fox jumps over the lazy dog",
-    "timestamp": "2023-02-17T12:00:00Z",
-    "read": true
+    "userId": 0,
+    "messages": [
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      }
+    ]
   },
   {
-    "id": 2,
-    "message": "A watched pot never boils",
-    "timestamp": "2023-02-17T12:15:00Z",
-    "read": false
+    "userId": 1,
+    "messages": [
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      }
+    ]
   },
   {
-    "id": 3,
-    "message": "When in Rome, do as the Romans do",
-    "timestamp": "2023-02-17T12:30:00Z",
-    "read": false
+    "userId": 2,
+    "messages": [
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      }
+    ]
   },
   {
-    "id": 4,
-    "message": "You can't judge a book by its cover",
-    "timestamp": "2023-02-17T12:45:00Z",
-    "read": true
-  },
-  {
-    "id": 5,
-    "message": "Time heals all wounds",
-    "timestamp": "2023-02-17T13:00:00Z",
-    "read": false
+    "userId": 3,
+    "messages": [
+      {
+        "text": "The quick brown fox jumps over the lazy dog",
+        "timestamp": "2023-02-17T12:00:00Z",
+        "read": true,
+        "isSenderMe": false
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "When in Rome, do as the Romans do",
+        "timestamp": "2023-02-17T12:30:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "A watched pot never boils",
+        "timestamp": "2023-02-17T12:15:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "You can't judge a book by its cover",
+        "timestamp": "2023-02-17T12:45:00Z",
+        "read": true,
+        "isSenderMe": true
+      },
+      {
+        "text": "Time heals all wounds",
+        "timestamp": "2023-02-17T13:00:00Z",
+        "read": true,
+        "isSenderMe": true
+      }
+    ]
   }
 ]

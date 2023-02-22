@@ -9,7 +9,7 @@ import { ImBlocked } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import { CgClose } from "react-icons/cg";
 import { Avatar, Button, Switch, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { batch, useDispatch, useSelector } from "react-redux";
 import { deleteChat, handleRightDrawer } from "../../store/user";
 
 function NewUserCard() {
@@ -48,7 +48,14 @@ function NewUserCard() {
           <Typography color={"#667681"} fontSize={15}>
             Media, links and docs
           </Typography>
-          <Button endIcon={<ArrowForwardIosIcon />}>0</Button>
+          <Button
+            endIcon={<ArrowForwardIosIcon />}
+            onClick={() =>
+              dispatch(handleRightDrawer({ open: true, name: "Media" }))
+            }
+          >
+            0
+          </Button>
         </Box>
 
         <Box className="user-card-other">

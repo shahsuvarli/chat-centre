@@ -12,7 +12,6 @@ export default function LeftDrawer() {
   const { leftDrawer } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    console.log('useeffect')
     switch (leftDrawer.name) {
       case "Profile":
         setComponent(<Profile />);
@@ -38,7 +37,7 @@ export default function LeftDrawer() {
   };
   return (
     <React.Fragment>
-      <Drawer open={leftDrawer.open} BackdropProps={{ style: { opacity: 0 } }}>
+      <Drawer anchor="left" open={leftDrawer.open} BackdropProps={{ style: { opacity: 0 } }}>
         {list()}
       </Drawer>
     </React.Fragment>

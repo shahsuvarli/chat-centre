@@ -1,6 +1,6 @@
 import React from "react";
 import { MdFilterList } from "react-icons/md";
-import { BsSearch } from "react-icons/bs";
+import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,7 @@ function MenuBody() {
       <div className="search-bar">
         <div className="textbox-container">
           <label htmlFor="search">
-            <BsSearch size={20} />
+            <BiSearchAlt2 size={19} color="#54646f" />
           </label>
           <input
             placeholder="Search or start new chat"
@@ -60,7 +60,7 @@ function MenuBody() {
                     textAlign={"left"}
                     fontSize={15}
                   >
-                    {person.messages[person.messages.length - 1]}
+                    {person.messages[person.messages.length - 1].text}
                   </Typography>
                 </div>
               </Box>

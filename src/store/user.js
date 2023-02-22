@@ -22,6 +22,7 @@ const initialState = {
   people,
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
+  selectedMedia: [1],
 };
 
 const userSlicer = createSlice({
@@ -56,6 +57,13 @@ const userSlicer = createSlice({
         name: action.payload.name,
       };
     },
+    selectMediaItem: (state, action) => {
+      const newFiles = action.payload.length
+        ? [...state.selectedMedia, action.payload]
+        : [];
+      state.selectedMedia = newFiles;
+      console.log(newFiles);
+    },
   },
 });
 
@@ -65,5 +73,6 @@ export const {
   deleteChat,
   handleLeftDrawer,
   handleRightDrawer,
+  selectMediaItem,
 } = userSlicer.actions;
 export default userSlicer.reducer;

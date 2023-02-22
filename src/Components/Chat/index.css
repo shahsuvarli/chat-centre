@@ -90,13 +90,17 @@
 
 .message-container {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   width: 90%;
   gap: 10px;
   margin-right: 65px;
   margin-bottom: 10px;
+  justify-content: flex-end;
+}
+
+.itIsNotMe {
+  justify-content: flex-start;
 }
 
 .message-content {
