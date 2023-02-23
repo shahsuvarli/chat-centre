@@ -5,7 +5,11 @@ import "./index.css";
 import GroupIcon from "@mui/icons-material/Group";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLeftDrawer, selectUser } from "../../store/user";
+import {
+  handleLeftDrawer,
+  handleRightDrawer,
+  selectUser,
+} from "../../store/user";
 
 const news = [
   { icon: <GroupIcon size={23} />, text: "New group" },
@@ -17,8 +21,9 @@ function NewChat() {
   const { admin, people } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleChat = (person) => {
+    dispatch(handleRightDrawer({ open: false, name: "" }));
+    dispatch(handleLeftDrawer({ open: false, name: "" }));
     dispatch(selectUser(person));
-    dispatch(handleLeftDrawer({ open: false, name: "", anchor: "" }));
   };
   return (
     <div className="newchat-container">

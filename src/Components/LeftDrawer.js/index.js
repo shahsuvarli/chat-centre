@@ -37,7 +37,13 @@ export default function LeftDrawer() {
   };
   return (
     <React.Fragment>
-      <Drawer anchor="left" open={leftDrawer.open} BackdropProps={{ style: { opacity: 0 } }}>
+      <Drawer
+        sx={{ width: 0 }}
+        hideBackdrop={true}
+        anchor="left"
+        open={leftDrawer.open}
+        BackdropProps={{ style: { opacity: 0 } }}
+      >
         {list()}
       </Drawer>
     </React.Fragment>

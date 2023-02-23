@@ -12,11 +12,39 @@ const initialState = {
     image: "https://i.ibb.co/GV4pCwH/IMG-4973-1.png",
     about: "Software Developer",
     messages: [
-      "Hey there!",
-      "I'm good, thanks for asking.",
-      "Yeah, it's beautiful outside.",
-      "Just hanging out at home.",
-      "You too, take care!",
+      {
+        text: "A watched pot never boils",
+        timestamp: "2023-02-17 12:35:00",
+        read: true,
+        isSenderMe: false,
+      },
+      {
+        text: "You can't judge a book by its cover",
+        timestamp: "2023-02-17 12:45:00",
+        read: true,
+        isSenderMe: true,
+      },
+      {
+        text: "Time heals all wounds",
+        timestamp: "2023-02-18 00:07:00",
+        read: true,
+        isSenderMe: true,
+      },
+    ],
+    media: [
+      {
+        name: "Media",
+        list: [
+          "https://fastly.picsum.photos/id/1054/200/300.jpg?hmac=2AMkQJkHozCbGVYoPJsFwSYmOfmPcPMYd0RtXMm-I2A",
+          "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+          "https://randomuser.me/api/portraits/women/8.jpg",
+        ],
+      },
+      { name: "Docs", list: ["invoice.pdf"] },
+      {
+        name: "Links",
+        list: ["https://facebook.com", "https://twitter.com"],
+      },
     ],
   },
   user: false,

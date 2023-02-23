@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../store/user";
+import { handleRightDrawer, selectUser } from "../../store/user";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
@@ -12,6 +12,7 @@ function MenuBody() {
   const { people } = useSelector((state) => state.user);
 
   const handleUser = (person) => {
+    dispatch(handleRightDrawer({open:false, name:''}))
     dispatch(selectUser(person));
   };
 

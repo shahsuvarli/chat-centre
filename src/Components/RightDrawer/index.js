@@ -28,9 +28,10 @@ export default function RightDrawer() {
   return (
     <React.Fragment>
       <Drawer
+        sx={{ width: 0}}
+        hideBackdrop={true}
         anchor="right"
         open={rightDrawer.open}
-        BackdropProps={{ style: { opacity: 0 } }}
       >
         {list()}
       </Drawer>
