@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import people from "../data/people.json";
+import moment from "moment";
 
 const initialState = {
   admin: {
@@ -35,7 +36,7 @@ const userSlicer = createSlice({
     sendMessage: (state, action) => {
       const messageObject = {
         text: action.payload,
-        timestamp: new Date().toLocaleString(),
+        timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
         read: true,
         isSenderMe: true,
       };
@@ -43,8 +44,6 @@ const userSlicer = createSlice({
       state.people.find((person) => person.id === state.user.id).messages =
         newMessages;
       state.user.messages = newMessages;
-      console.log(new Date().toLocaleTimeString())
-      // console.log(new Date().toISOString())
     },
     deleteChat: (state) => {
       state.people = state.people.filter(

@@ -9,7 +9,7 @@ import { ImBlocked } from "react-icons/im";
 import { MdDelete } from "react-icons/md";
 import { CgClose } from "react-icons/cg";
 import { Avatar, Button, Switch, Typography } from "@mui/material";
-import { batch, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteChat, handleRightDrawer } from "../../store/user";
 
 function NewUserCard() {

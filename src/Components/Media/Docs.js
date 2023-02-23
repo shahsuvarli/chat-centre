@@ -1,5 +1,4 @@
-import { CheckBox } from "@mui/icons-material";
-import { Avatar, Checkbox, Typography } from "@mui/material";
+import { Checkbox, Typography } from "@mui/material";
 import React from "react";
 import { FaFilePdf } from "react-icons/fa";
 import { TfiDownload } from "react-icons/tfi";
