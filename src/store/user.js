@@ -61,7 +61,6 @@ const userSlicer = createSlice({
   reducers: {
     register: (state, action) => {
       state.admin = action.payload;
-      console.log(state.admin, 'admin')
     },
     selectUser: (state, action) => {
       state.user = action.payload;
