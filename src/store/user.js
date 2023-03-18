@@ -3,6 +3,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   setDoc,
   updateDoc,
@@ -19,6 +20,13 @@ export const getUsers = createAsyncThunk("getUsers", async () => {
     list.push(doc.data());
   });
   return list;
+});
+
+export const getUser = createAsyncThunk("getUser", async () => {
+  const userRef = (
+    await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))
+  ).data();
+  return userRef;
 });
 
 const initialState = {
@@ -80,14 +88,15 @@ const userSlicer = createSlice({
   initialState,
   reducers: {
     register: (state, action) => {
-      state.admin = action.payload;
+      userSlicer.caseReducers.login(state, action);
     },
     login: (state, action) => {
       state.admin = action.payload;
       localStorage.setItem("wpLogin", action.payload.id);
     },
-    selectAdmin: (state, action) => {
-      state.admin = action.payload;
+    logout: (state, action) => {
+      state.admin = null;
+      localStorage.removeItem("wpLogin");
     },
     loadPeople: (state, action) => {
       state.people = action.payload;
@@ -97,6 +106,23 @@ const userSlicer = createSlice({
     },
     selectUser: (state, action) => {
       state.user = action.payload;
+      const chatId = state.admin.chats.find(
+        (chat) => chat.userId === state.user.id
+      )?.chatId;
+      if (chatId) {
+        // pass
+      } else {
+        const newId = v4();
+        updateDoc(doc(db, "users", state.admin.id), {
+          chats: arrayUnion({ chatId: newId, userId: state.user.id }),
+        });
+        updateDoc(doc(db, "users", state.user.id), {
+          chats: arrayUnion({ chatId: newId, userId: state.admin.id }),
+        });
+        setDoc(doc(db, "chats", newId), {
+          messages: [],
+        });
+      }
     },
     sendMessage: (state, action) => {
       const messageObject = {
@@ -108,24 +134,10 @@ const userSlicer = createSlice({
 
       const chatId = state.admin.chats.find(
         (chat) => chat.userId === state.user.id
-      )?.chatId;
-      if (chatId) {
-        updateDoc(doc(db, "chats", chatId), {
-          messages: arrayUnion(messageObject),
-        });
-      } else {
-        const newId = v4();
-        updateDoc(doc(db, "users", state.admin.id), {
-          chats: arrayUnion({ chatId: newId, userId: state.user.id }),
-        });
-        updateDoc(doc(db, "users", state.user.id), {
-          chats: arrayUnion({ chatId: newId, userId: state.admin.id }),
-        });
-        setDoc(doc(db, "chats", newId), {
-          messages: [messageObject],
-        });
-        userSlicer.caseReducers.getUsers();
-      }
+      ).chatId;
+      updateDoc(doc(db, "chats", chatId), {
+        messages: arrayUnion(messageObject),
+      });
       // console.log(messageObject);
       // const newMessages = [...state.user.messages, messageObject];
       // state.people.find((person) => person.id === state.user.id).messages =
@@ -159,22 +171,22 @@ const userSlicer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder.addCase(getUsers.rejected, (state, action) => {
-    //   console.log("rejected");
-    // });
+    //  GET PEOPLE DETAILS
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.people = action.payload;
     });
-    // builder.addCase(getUsers.pending, (state, action) => {
-    //   console.log("pending");
-    // });
+
+    // GET ADMIN DETAILS
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.admin = action.payload;
+    });
   },
 });
 
 export const {
   register,
   login,
-  selectAdmin,
+  logout,
   loadPeople,
   loadChats,
   selectUser,

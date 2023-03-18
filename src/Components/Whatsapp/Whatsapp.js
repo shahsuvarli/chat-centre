@@ -6,24 +6,12 @@ import UserCard from "../UserCard/UserCard";
 import "./index.css";
 import RightDrawer from "../RightDrawer";
 import { connect, useDispatch } from "react-redux";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../firebase.js";
-import { getUsers, loadChats, loadPeople } from "../../store/user";
+import { getUsers } from "../../store/user";
 
 function Whatsapp(props) {
   const dispatch = useDispatch();
 
-  // const getUsers = async () => {
-  //   const list = [];
-  //   const usersRef = await getDocs(collection(db, "users"));
-  //   usersRef.forEach((doc) => {
-  //     list.push(doc.data());
-  //   });
-  //   return usersRef;
-  // };
-
   useEffect(() => {
-    // getUsers();
     dispatch(getUsers());
   }, []);
 
