@@ -1,9 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
-import people from "../data/people.json";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+// import people from "../data/people.json";
 import moment from "moment";
+import { v4 } from "uuid";
+import { db } from "../firebase";
+
+export const getUsers = createAsyncThunk("getUsers", async () => {
+  const list = [];
+  const usersRef = await getDocs(collection(db, "users"));
+  usersRef.forEach((doc) => {
+    list.push(doc.data());
+  });
+  return list;
+});
 
 const initialState = {
-  admin: 0,
+  admin: null,
   // admin: {
   //   id: 0,
   //   name: "Elvin",
@@ -49,7 +68,8 @@ const initialState = {
   //   ],
   // },
   user: false,
-  people,
+  people: [],
+  chats: [],
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
@@ -62,6 +82,19 @@ const userSlicer = createSlice({
     register: (state, action) => {
       state.admin = action.payload;
     },
+    login: (state, action) => {
+      state.admin = action.payload;
+      localStorage.setItem("wpLogin", action.payload.id);
+    },
+    selectAdmin: (state, action) => {
+      state.admin = action.payload;
+    },
+    loadPeople: (state, action) => {
+      state.people = action.payload;
+    },
+    loadChats: (state, action) => {
+      state.chats = action.payload;
+    },
     selectUser: (state, action) => {
       state.user = action.payload;
     },
@@ -69,13 +102,35 @@ const userSlicer = createSlice({
       const messageObject = {
         text: action.payload,
         timestamp: moment().format("YYYY-MM-DD HH:mm:ss"),
-        read: true,
-        isSenderMe: true,
+        read: false,
+        senderId: state.admin.id,
       };
-      const newMessages = [...state.user.messages, messageObject];
-      state.people.find((person) => person.id === state.user.id).messages =
-        newMessages;
-      state.user.messages = newMessages;
+
+      const chatId = state.admin.chats.find(
+        (chat) => chat.userId === state.user.id
+      )?.chatId;
+      if (chatId) {
+        updateDoc(doc(db, "chats", chatId), {
+          messages: arrayUnion(messageObject),
+        });
+      } else {
+        const newId = v4();
+        updateDoc(doc(db, "users", state.admin.id), {
+          chats: arrayUnion({ chatId: newId, userId: state.user.id }),
+        });
+        updateDoc(doc(db, "users", state.user.id), {
+          chats: arrayUnion({ chatId: newId, userId: state.admin.id }),
+        });
+        setDoc(doc(db, "chats", newId), {
+          messages: [messageObject],
+        });
+        userSlicer.caseReducers.getUsers();
+      }
+      // console.log(messageObject);
+      // const newMessages = [...state.user.messages, messageObject];
+      // state.people.find((person) => person.id === state.user.id).messages =
+      //   newMessages;
+      // state.user.messages = newMessages;
     },
     deleteChat: (state) => {
       state.people = state.people.filter(
@@ -103,10 +158,25 @@ const userSlicer = createSlice({
       state.selectedMedia = newFiles;
     },
   },
+  extraReducers: (builder) => {
+    // builder.addCase(getUsers.rejected, (state, action) => {
+    //   console.log("rejected");
+    // });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      state.people = action.payload;
+    });
+    // builder.addCase(getUsers.pending, (state, action) => {
+    //   console.log("pending");
+    // });
+  },
 });
 
 export const {
   register,
+  login,
+  selectAdmin,
+  loadPeople,
+  loadChats,
   selectUser,
   sendMessage,
   deleteChat,

@@ -7,7 +7,7 @@ function Menu() {
   return (
     <div className="menu-container">
       <MenuHeader />
-      <MenuBody/>
+      <MenuBody />
     </div>
   );
 }

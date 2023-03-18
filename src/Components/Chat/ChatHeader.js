@@ -16,7 +16,7 @@ function ChatHeader() {
       <div className="header-user-info">
         <Avatar src={user.image} />
         <Typography>
-          {user.name} {user.surname}
+          {user.fullName}
         </Typography>
       </div>
       <div className="header-chat-info">

@@ -51,8 +51,8 @@ function FullWidthTabs() {
       sx={{
         bgcolor: "background.paper",
         width: 500,
-        height: "100%",
-        borderRadius: 5,
+        borderRadius: 2,
+        boxShadow:'0px 0px 10px 5px grey'
       }}
     >
       <AppBar position="static">

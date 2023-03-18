@@ -12,7 +12,7 @@ function MenuBody() {
   const { people } = useSelector((state) => state.user);
 
   const handleUser = (person) => {
-    dispatch(handleRightDrawer({open:false, name:''}))
+    dispatch(handleRightDrawer({ open: false, name: "" }));
     dispatch(selectUser(person));
   };
 
@@ -35,21 +35,21 @@ function MenuBody() {
       </div>
       <div className="chats-container">
         {people
-          .filter(
-            (person) =>
-              person.name
-                .concat(` ${person.surname}`)
-                .toLowerCase()
-                .includes(search) && person.messages.length
-          )
-          .sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          })
-          .sort((a, b) => {
-            return b.messages[b.messages.length - 1].timestamp.localeCompare(
-              a.messages[a.messages.length - 1].timestamp
-            );
-          })
+          // .filter(
+          //   (person) =>
+              // person.name
+                // .concat(` ${person.surname}`)
+                // .toLowerCase()
+                // .includes(search) && person.messages.length
+          // )
+          // .sort((a, b) => {
+          //   return a.name.localeCompare(b.name);
+          // })
+          // .sort((a, b) => {
+          //   return b.messages[b.messages.length - 1].timestamp.localeCompare(
+          //     a.messages[a.messages.length - 1].timestamp
+          //   );
+          // })
           .map((person) => {
             return (
               <Box
@@ -61,12 +61,13 @@ function MenuBody() {
                 <div className="menu-chat-body">
                   <div>
                     <Typography variant="body1">
-                      {person.name} {person.surname}
+                      {person.fullName}
                     </Typography>
                     <Typography color="#677782" fontSize={13}>
-                      {person.messages[
+                      {/* {person.messages[
                         person.messages.length - 1
-                      ].timestamp.slice(11, 16)}
+                      ].timestamp.slice(11, 16)} */}
+                      hello my name is elvin
                     </Typography>
                   </div>
                   <Typography
@@ -76,7 +77,7 @@ function MenuBody() {
                     className="message"
                     textAlign={"left"}
                   >
-                    {person.messages[person.messages.length - 1].text}
+                    {/* {person.messages[person.messages.length - 1].text} */} How is it going man
                   </Typography>
                 </div>
               </Box>

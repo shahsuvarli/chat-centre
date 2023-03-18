@@ -5,7 +5,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { register } from "../../../store/user";
 
 const Register = () => {
@@ -55,6 +55,7 @@ const Register = () => {
                   phone: values.phone,
                   about: values.about,
                   image: downloadURL,
+                  chats: [],
                 });
               });
             });

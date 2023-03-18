@@ -3,14 +3,13 @@
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  background-image: url('../../images/wp.jpg');
 }
 
 .auth-box {
-  height: 350px;
-  border: 1px solid dodgerblue;
-  border-radius: 7px;
+  margin-top: 5%;
+  margin-right: 10%;
 }
 
 /* LOGIN */
@@ -48,7 +47,6 @@ form > input {
   display: flex;
   flex-direction: column;
   gap: 13px;
-  height: 400px;
 }
 
 .register-container > form {
