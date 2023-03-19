@@ -37,10 +37,10 @@ function MenuBody() {
         {people
           // .filter(
           //   (person) =>
-              // person.name
-                // .concat(` ${person.surname}`)
-                // .toLowerCase()
-                // .includes(search) && person.messages.length
+          // person.name
+          // .concat(` ${person.surname}`)
+          // .toLowerCase()
+          // .includes(search) && person.messages.length
           // )
           // .sort((a, b) => {
           //   return a.name.localeCompare(b.name);
@@ -60,9 +60,7 @@ function MenuBody() {
                 <Avatar sx={{ width: 50, height: 50 }} src={person.image} />
                 <div className="menu-chat-body">
                   <div>
-                    <Typography variant="body1">
-                      {person.fullName}
-                    </Typography>
+                    <Typography variant="body1">{person.fullName}</Typography>
                     <Typography color="#677782" fontSize={13}>
                       {/* {person.messages[
                         person.messages.length - 1
@@ -77,7 +75,8 @@ function MenuBody() {
                     className="message"
                     textAlign={"left"}
                   >
-                    {/* {person.messages[person.messages.length - 1].text} */} How is it going man
+                    {/* {person.messages[person.messages.length - 1].text} */}{" "}
+                    How is it going man
                   </Typography>
                 </div>
               </Box>

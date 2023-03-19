@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { signOut } from "firebase/auth";
 import {
   arrayUnion,
   collection,
@@ -8,12 +9,10 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-// import people from "../data/people.json";
 import moment from "moment";
-import { v4 } from "uuid";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
-export const getUsers = createAsyncThunk("getUsers", async () => {
+export const getUsers = createAsyncThunk("getUsers", async (hey) => {
   const list = [];
   const usersRef = await getDocs(collection(db, "users"));
   usersRef.forEach((doc) => {
@@ -27,6 +26,11 @@ export const getUser = createAsyncThunk("getUser", async () => {
     await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))
   ).data();
   return userRef;
+});
+
+export const getMessages = createAsyncThunk("getMessages", async (id) => {
+  const chatRef = (await getDoc(doc(db, "chats", id))).data();
+  return chatRef;
 });
 
 const initialState = {
@@ -76,8 +80,9 @@ const initialState = {
   //   ],
   // },
   user: false,
+  selectedChatId: "",
+  selectedChat: [],
   people: [],
-  chats: [],
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
@@ -96,33 +101,26 @@ const userSlicer = createSlice({
     },
     logout: (state, action) => {
       state.admin = null;
+      signOut(auth);
       localStorage.removeItem("wpLogin");
     },
     loadPeople: (state, action) => {
       state.people = action.payload;
     },
-    loadChats: (state, action) => {
-      state.chats = action.payload;
-    },
     selectUser: (state, action) => {
       state.user = action.payload;
-      const chatId = state.admin.chats.find(
-        (chat) => chat.userId === state.user.id
-      )?.chatId;
-      if (chatId) {
-        // pass
-      } else {
-        const newId = v4();
-        updateDoc(doc(db, "users", state.admin.id), {
-          chats: arrayUnion({ chatId: newId, userId: state.user.id }),
-        });
-        updateDoc(doc(db, "users", state.user.id), {
-          chats: arrayUnion({ chatId: newId, userId: state.admin.id }),
-        });
-        setDoc(doc(db, "chats", newId), {
-          messages: [],
-        });
-      }
+      const concIds =
+        state.user.id < state.admin.id
+          ? state.user.id + state.admin.id
+          : state.admin.id + state.user.id;
+      const chatRef = getDoc(doc(db, "chats", concIds));
+      chatRef.then((snap) => {
+        if (!snap.exists()) {
+          const newDocref = doc(db, "chats", concIds);
+          setDoc(newDocref, { messages: [] });
+        }
+      });
+      state.selectedChatId = concIds;
     },
     sendMessage: (state, action) => {
       const messageObject = {
@@ -132,17 +130,9 @@ const userSlicer = createSlice({
         senderId: state.admin.id,
       };
 
-      const chatId = state.admin.chats.find(
-        (chat) => chat.userId === state.user.id
-      ).chatId;
-      updateDoc(doc(db, "chats", chatId), {
+      updateDoc(doc(db, "chats", state.selectedChatId), {
         messages: arrayUnion(messageObject),
       });
-      // console.log(messageObject);
-      // const newMessages = [...state.user.messages, messageObject];
-      // state.people.find((person) => person.id === state.user.id).messages =
-      //   newMessages;
-      // state.user.messages = newMessages;
     },
     deleteChat: (state) => {
       state.people = state.people.filter(
@@ -180,6 +170,9 @@ const userSlicer = createSlice({
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.admin = action.payload;
     });
+    builder.addCase(getMessages.fulfilled, (state, action) => {
+      state.selectedChat = action.payload.messages;
+    });
   },
 });
 
@@ -187,8 +180,8 @@ export const {
   register,
   login,
   logout,
+  selectChatId,
   loadPeople,
-  loadChats,
   selectUser,
   sendMessage,
   deleteChat,
