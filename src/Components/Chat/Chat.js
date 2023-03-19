@@ -12,7 +12,7 @@ function Chat() {
   return (
     <div className="chat-container">
       {user ? (
-        <div>
+        <div className="chat-subcontainer">
           <ChatHeader />
           <ChatBody />
           <ChatFooter />

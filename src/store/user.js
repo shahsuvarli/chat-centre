@@ -171,7 +171,7 @@ const userSlicer = createSlice({
       state.admin = action.payload;
     });
     builder.addCase(getMessages.fulfilled, (state, action) => {
-      state.selectedChat = action.payload.messages;
+      state.selectedChat = action.payload.messages.reverse();
     });
   },
 });

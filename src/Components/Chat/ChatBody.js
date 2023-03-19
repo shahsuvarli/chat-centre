@@ -5,7 +5,7 @@ import { getMessages } from "../../store/user";
 import { Done } from "@mui/icons-material";
 
 function ChatBody() {
-  const { user, selectedChatId, selectedChat, admin } = useSelector(
+  const {  selectedChatId, selectedChat, admin } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();

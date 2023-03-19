@@ -32,16 +32,15 @@
 
 .chat-body {
   background-image: url("../../images/bg.png");
-  height: calc(100vh - 59px - 64px);
+  height: calc(100vh - 59px - 64px - 40px);
   opacity: 0.7;
   display: flex;
   align-items: flex-end;
-  flex-direction: column;
+  flex-direction: column-reverse;
   background-repeat: repeat;
-  justify-content: flex-end;
   overflow-y: scroll;
-  padding-bottom: 20px;
-  box-sizing: border-box;
+  padding: 20px 0px;
+  box-sizing: content-box;
 }
 
 .chat-footer {

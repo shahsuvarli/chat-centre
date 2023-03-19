@@ -7,6 +7,7 @@ import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { handleLeftDrawer, logout } from "../../store/user";
 import GroupsIcon from "@mui/icons-material/Groups";
+import { FaSignOutAlt } from "react-icons/fa";
 
 function MenuHeader() {
   const size = 23;
@@ -19,7 +20,13 @@ function MenuHeader() {
     <div className="menu-header">
       <Avatar src={admin.image} onClick={() => handleDrawer("Profile")} />
       <div className="menu-icons">
-        <Button onClick={()=>dispatch(logout())}>Logout</Button>
+        {/* <Button onClick={()=>dispatch(logout())}>Logout</Button> */}
+        <FaSignOutAlt
+          sx={{ color: "#54646f", width: 27, height: 27 }}
+          size={size}
+          color="#54646f"
+          onClick={()=>dispatch(logout())}
+        />
         <GroupsIcon
           sx={{ color: "#54646f", width: 27, height: 27 }}
           size={size}
