@@ -14,7 +14,7 @@ function App() {
     dispatch(getUser());
   }, []);
 
-  return <div className="App">{admin ? <Whatsapp /> : <Auth />}</div>;
+  return <div className="App">{!admin ? <Auth /> : <Whatsapp />}</div>;
 }
 
 export default App;

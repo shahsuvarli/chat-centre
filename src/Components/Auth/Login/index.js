@@ -6,9 +6,31 @@ import { auth, db } from "../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { login } from "../../../store/user";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const [error, setError] = React.useState("");
+
+  React.useEffect(() => {
+    switch (error.message) {
+      case "Firebase: Error (auth/user-not-found).":
+        toast.error("Sorry, user not found!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        break;
+      case "Firebase: Error (auth/wrong-password).":
+        toast.warning("Sorry, wrong password!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        break;
+
+      default:
+        break;
+    }
+  }, [error]);
+
   return (
     <div className="login-container">
       <h2>Login</h2>
@@ -25,16 +47,15 @@ const Login = () => {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          // setTimeout(async () => {
-            signInWithEmailAndPassword(auth, values.email, values.password)
-              .then(async (res) => {
-                const user = (await getDoc(doc(db, "users", res.user.uid))).data();
-                dispatch(login(user));
-              })
-              .catch((err) => console.log(err));
-            setSubmitting(false);
-          // }, 400);
+        onSubmit={(values) => {
+          signInWithEmailAndPassword(auth, values.email, values.password)
+            .then(async (res) => {
+              const user = (
+                await getDoc(doc(db, "users", res.user.uid))
+              ).data();
+              dispatch(login(user));
+            })
+            .catch((err) => setError(err));
         }}
       >
         {({
@@ -45,7 +66,6 @@ const Login = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
             <input
@@ -69,6 +89,7 @@ const Login = () => {
             <Button variant="contained" type="submit" disabled={isSubmitting}>
               login
             </Button>
+            <ToastContainer />
           </form>
         )}
       </Formik>

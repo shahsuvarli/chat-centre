@@ -1,6 +1,5 @@
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
-import "./index.css";
 import { useSelector } from "react-redux";
 import Profile from "../Profile.js/index.js";
 import DrawerHeader from "./DrawerHeader";

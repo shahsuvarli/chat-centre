@@ -5,13 +5,15 @@ import { getMessages } from "../../store/user";
 import { Done } from "@mui/icons-material";
 
 function ChatBody() {
-  const {  selectedChatId, selectedChat, admin } = useSelector(
+  const { selectedChatId, selectedChat, admin, lastMessage } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getMessages(selectedChatId));
-  }, [selectedChat]);
+    setTimeout(() => {
+      dispatch(getMessages(selectedChatId));
+    }, 500);
+  }, [selectedChatId, lastMessage]);
   return (
     <div className="chat-body">
       {selectedChat.map((message, index) => {
@@ -29,8 +31,6 @@ function ChatBody() {
                 {message.read ? (
                   <DoneAllIcon
                     sx={{
-                      width: 15,
-                      height: 15,
                       color: "#53bdea",
                       display: message.senderId === admin.id || "none",
                     }}
@@ -38,8 +38,6 @@ function ChatBody() {
                 ) : (
                   <Done
                     sx={{
-                      width: 15,
-                      height: 15,
                       color: "grey",
                       display: message.senderId === admin.id || "none",
                     }}

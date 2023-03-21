@@ -86,6 +86,7 @@ const initialState = {
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
+  lastMessage: "",
 };
 
 const userSlicer = createSlice({
@@ -93,7 +94,8 @@ const userSlicer = createSlice({
   initialState,
   reducers: {
     register: (state, action) => {
-      userSlicer.caseReducers.login(state, action);
+      state.admin = action.payload;
+      localStorage.setItem("wpLogin", action.payload.id);
     },
     login: (state, action) => {
       state.admin = action.payload;
@@ -101,8 +103,8 @@ const userSlicer = createSlice({
     },
     logout: (state, action) => {
       state.admin = null;
-      signOut(auth);
       localStorage.removeItem("wpLogin");
+      signOut(auth);
     },
     loadPeople: (state, action) => {
       state.people = action.payload;
@@ -133,6 +135,7 @@ const userSlicer = createSlice({
       updateDoc(doc(db, "chats", state.selectedChatId), {
         messages: arrayUnion(messageObject),
       });
+      state.lastMessage = action.payload;
     },
     deleteChat: (state) => {
       state.people = state.people.filter(
@@ -168,7 +171,7 @@ const userSlicer = createSlice({
 
     // GET ADMIN DETAILS
     builder.addCase(getUser.fulfilled, (state, action) => {
-      state.admin = action.payload;
+      state.admin = action.payload || null;
     });
     builder.addCase(getMessages.fulfilled, (state, action) => {
       state.selectedChat = action.payload.messages.reverse();

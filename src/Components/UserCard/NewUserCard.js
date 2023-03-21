@@ -30,11 +30,14 @@ function NewUserCard() {
       </Box>
       <Box className="usercard-body">
         <Box className="user-box-info">
-          <Avatar sx={{ width: 170, height: 170 }} src={user.image} />
-          <Typography fontSize={24} color="#3b4a54">
-            {user.name} {user.surname}
+          <Avatar
+            sx={{ width: 200, height: 200, marginBottom: 1.5 }}
+            src={user.image}
+          />
+          <Typography fontSize={23} color="#3b4a54">
+            {user.fullName}
           </Typography>
-          <Typography lineHeight={1.5} color="#6d7c87">
+          <Typography fontSize={18} lineHeight={1.5} color="#6d7c87">
             {user.phone}
           </Typography>
         </Box>

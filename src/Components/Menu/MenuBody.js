@@ -35,16 +35,15 @@ function MenuBody() {
       </div>
       <div className="chats-container">
         {people
-          // .filter(
-          //   (person) =>
-          // person.name
-          // .concat(` ${person.surname}`)
-          // .toLowerCase()
-          // .includes(search) && person.messages.length
-          // )
-          // .sort((a, b) => {
-          //   return a.name.localeCompare(b.name);
-          // })
+          .filter((person) =>
+            person.fullName
+              // .concat(` ${person.surname}`)
+              .toLowerCase()
+              .includes(search)
+          )
+          .sort((a, b) => {
+            return a.fullName.localeCompare(b.fullName);
+          })
           // .sort((a, b) => {
           //   return b.messages[b.messages.length - 1].timestamp.localeCompare(
           //     a.messages[a.messages.length - 1].timestamp
@@ -65,7 +64,7 @@ function MenuBody() {
                       {/* {person.messages[
                         person.messages.length - 1
                       ].timestamp.slice(11, 16)} */}
-                      hello my name is elvin
+                      *time*
                     </Typography>
                   </div>
                   <Typography
@@ -76,7 +75,7 @@ function MenuBody() {
                     textAlign={"left"}
                   >
                     {/* {person.messages[person.messages.length - 1].text} */}{" "}
-                    How is it going man
+                    *last message*
                   </Typography>
                 </div>
               </Box>

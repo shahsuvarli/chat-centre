@@ -5,12 +5,77 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
 import { register } from "../../../store/user";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import { AiFillExclamationCircle } from "react-icons/ai";
 
 const Register = () => {
   const [image, setImage] = React.useState();
+  const inputs = [
+    {
+      id: 0,
+      placeholder: "Email *",
+      name: "email",
+      type: "email",
+      value: "email",
+    },
+    {
+      id: 1,
+      placeholder: "Password *",
+      name: "password",
+      type: "password",
+      value: "password",
+    },
+    {
+      id: 2,
+      placeholder: "Username *",
+      name: "username",
+      type: "text",
+      value: "username",
+    },
+    {
+      id: 3,
+      placeholder: "Fullname",
+      name: "fullName",
+      type: "text",
+      value: "fullName",
+    },
+    {
+      id: 4,
+      placeholder: "Phone *",
+      name: "phone",
+      type: "number",
+      value: "phone",
+    },
+    {
+      id: 5,
+      placeholder: "About",
+      name: "about",
+      type: "textarea",
+      values: "about",
+    },
+  ];
   const dispatch = useDispatch();
+  const [error, setError] = React.useState("");
+
+  React.useEffect(() => {
+    switch (error.message) {
+      case "Firebase: Error (auth/user-not-found).":
+        toast.error("Sorry, user not found!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        break;
+      case "Firebase: Error (auth/wrong-password).":
+        toast.warning("Sorry, wrong password!", {
+          position: toast.POSITION.TOP_LEFT,
+        });
+        break;
+
+      default:
+        break;
+    }
+  }, [error]);
   return (
     <div className="register-container">
       <h2>Register</h2>
@@ -26,15 +91,24 @@ const Register = () => {
         validate={(values) => {
           const errors = {};
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = "Email required";
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
             errors.email = "Invalid email address";
           }
+          if (!values.password) {
+            errors.password = "Password required";
+          }
+          if (!values.username) {
+            errors.username = "Username required";
+          }
+          if (!values.phone) {
+            errors.phone = "Phone number required";
+          }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           setTimeout(async () => {
             const result = await createUserWithEmailAndPassword(
               auth,
@@ -51,15 +125,14 @@ const Register = () => {
                   email: values.email,
                   password: values.password,
                   username: values.username,
-                  fullName: values.fullName,
+                  fullName: values.fullName || String(values.phone),
                   phone: values.phone,
-                  about: values.about,
+                  about: values.about || "Hey! I am using WhatsApp-clone!",
                   image: downloadURL,
                   chats: [],
                 });
               });
             });
-            setSubmitting(false);
             dispatch(register((await getDoc(userRef)).data()));
           }, 400);
         }}
@@ -76,60 +149,35 @@ const Register = () => {
           /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit} className="login-form">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
-            />
-            {errors.email && touched.email && errors.email}
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {errors.password && touched.password && errors.password}
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.username}
-            />
-            {errors.username && touched.username && errors.username}
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Full name"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.fullName}
-            />
-            {errors.fullName && touched.fullName && errors.fullName}
-            <input
-              type="number"
-              name="phone"
-              placeholder="Phone number"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.phone}
-            />
-            {errors.phone && touched.phone && errors.phone}
-            <input
-              type="textarea"
-              name="about"
-              placeholder="About"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.about}
-            />
-            {errors.about && touched.about && errors.about}
+            {inputs.map((input) => {
+              return (
+                <React.Fragment key={input.id}>
+                  <input
+                    key={input.id}
+                    type={input.type}
+                    name={input.name}
+                    placeholder={input.placeholder}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values[input.value]}
+                  />
+                  <span
+                    className={
+                      errors[input.value] &&
+                      touched[input.value] &&
+                      errors[input.value]
+                        ? "error-show"
+                        : "error-hide"
+                    }
+                  >
+                    <AiFillExclamationCircle />
+                    {errors[input.value] &&
+                      touched[input.value] &&
+                      errors[input.value]}
+                  </span>
+                </React.Fragment>
+              );
+            })}
             <input
               type="file"
               name="image"
@@ -138,9 +186,10 @@ const Register = () => {
                 setFieldValue("image", event.currentTarget.files[0]);
               }}
             />
-            <Button type="submit" disabled={isSubmitting} variant="contained">
+            <Button type="submit" variant="contained" sx={{ marginTop: 2 }}>
               Submit
             </Button>
+            <ToastContainer />
           </form>
         )}
       </Formik>
