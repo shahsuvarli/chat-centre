@@ -16,7 +16,11 @@ h5 {
   padding: 0;
 }
 
-img, svg:hover{cursor: pointer;}
+svg:hover {
+  cursor: pointer;
+}
+
+p{margin: 0;}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

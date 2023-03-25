@@ -10,9 +10,9 @@ function ChatBody() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    setTimeout(() => {
+    if (selectedChatId) {
       dispatch(getMessages(selectedChatId));
-    }, 500);
+    }
   }, [selectedChatId, lastMessage]);
   return (
     <div className="chat-body">

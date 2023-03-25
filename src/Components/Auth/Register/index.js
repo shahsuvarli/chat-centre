@@ -4,11 +4,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { register, setLoading } from "../../../store/user";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { AiFillExclamationCircle } from "react-icons/ai";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const Register = () => {
   const [image, setImage] = React.useState();
@@ -34,27 +35,6 @@ const Register = () => {
       type: "text",
       value: "username",
     },
-    {
-      id: 3,
-      placeholder: "Fullname",
-      name: "fullName",
-      type: "text",
-      value: "fullName",
-    },
-    {
-      id: 4,
-      placeholder: "Phone *",
-      name: "phone",
-      type: "number",
-      value: "phone",
-    },
-    {
-      id: 5,
-      placeholder: "About",
-      name: "about",
-      type: "textarea",
-      values: "about",
-    },
   ];
   const dispatch = useDispatch();
   const [error, setError] = React.useState("");
@@ -78,15 +58,12 @@ const Register = () => {
   }, [error]);
   return (
     <div className="register-container">
-      <h2>Register</h2>
+      <h2 style={{ color: "grey" }}>Register</h2>
       <Formik
         initialValues={{
           email: "",
           password: "",
           username: "",
-          fullName: "",
-          phone: "",
-          about: "",
         }}
         validate={(values) => {
           const errors = {};
@@ -103,15 +80,6 @@ const Register = () => {
           if (!values.username) {
             errors.username = "Username required";
           }
-          if (!values.phone) {
-            errors.phone = "Phone number required";
-          }
-          if (!values.image) {
-            values.image = {
-              url: "https://linkpicture.com/Images/nlogo.png",
-              name: "no-image",
-            };
-          }
           return errors;
         }}
         onSubmit={(values) => {
@@ -124,6 +92,10 @@ const Register = () => {
               .then(async (res) => {
                 dispatch(setLoading(true));
                 const userRef = doc(db, "users", res.user.uid);
+                values.image = {
+                  url: "https://linkpicture.com/Images/nlogo.png",
+                  name: "no-image",
+                };
                 const storageRef = ref(storage, `images/${values.image.name}`);
                 await uploadBytesResumable(storageRef, values.image).then(
                   () => {
@@ -134,10 +106,6 @@ const Register = () => {
                           email: values.email,
                           password: values.password,
                           username: values.username,
-                          fullName: values.fullName || String(values.phone),
-                          phone: values.phone,
-                          about:
-                            values.about || "Hey! I am using WhatsApp-clone!",
                           image: downloadURL,
                           chats: [],
                         };
@@ -198,15 +166,32 @@ const Register = () => {
                 </React.Fragment>
               );
             })}
+            <label id="file-label" htmlFor="file">
+              <span>
+                <CloudUploadIcon
+                  sx={{ color: "#128C7E", width: 40, height: 40 }}
+                />
+              </span>
+              <p className={`${values.image ? "selected" : "not-selected"}`}>
+                {values.image ? "Thanks ✓" : "Please select photo"}
+              </p>
+            </label>
             <input
+              style={{ display: "none" }}
+              id="file"
               type="file"
               name="image"
               value={image}
+              accept="image/*"
               onChange={(event) => {
                 setFieldValue("image", event.currentTarget.files[0]);
               }}
             />
-            <Button type="submit" variant="contained" sx={{ marginTop: 2 }}>
+            <Button
+              id="register-button"
+              type="submit"
+              // sx={{ marginTop: 2, backgroundColor: "#128C7E" }}
+            >
               Submit
             </Button>
             <ToastContainer />

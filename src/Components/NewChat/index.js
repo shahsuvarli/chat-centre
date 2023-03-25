@@ -75,7 +75,7 @@ function NewChat() {
         {people
           .filter((a) => a.id)
           .sort((a, b) => {
-            return a.fullName.localeCompare(b.fullName);
+            return a.username.localeCompare(b.username);
           })
           .map((person) => {
             return (
@@ -89,9 +89,7 @@ function NewChat() {
                   src={person.image}
                 ></Avatar>
                 <div className="new-people-card">
-                  <Typography>
-                    {person.fullName}
-                  </Typography>
+                  <Typography>{person.username}</Typography>
                   <Typography color={"#667781"} fontSize={15}>
                     {person.about}
                   </Typography>

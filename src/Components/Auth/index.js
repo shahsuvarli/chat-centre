@@ -49,7 +49,7 @@ function FullWidthTabs() {
   return (
     <Box
       sx={{
-        bgcolor: "#FFFAFA",
+        bgcolor: "#fffafa",
         width: 500,
         borderRadius: 2,
         boxShadow: "0px 0px 10px 5px grey",
@@ -57,15 +57,24 @@ function FullWidthTabs() {
     >
       <AppBar position="static">
         <Tabs
+        className="tab-container"
           value={value}
           onChange={handleChange}
-          TabIndicatorProps={{ style: { backgroundColor: "green" } }}
+          TabIndicatorProps={{ style: { backgroundColor: "#128C7E" } }}
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Login" {...a11yProps(0)} />
-          <Tab label="Register" {...a11yProps(1)} />
+          <Tab
+            // style={{ backgroundColor: "#128C7E" }}
+            label="Login"
+            {...a11yProps(0)}
+          />
+          <Tab
+            // style={{ backgroundColor: "#128C7E" }}
+            label="Register"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>

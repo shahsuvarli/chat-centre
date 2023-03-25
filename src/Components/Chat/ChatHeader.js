@@ -9,15 +9,13 @@ function ChatHeader() {
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleOpen = () => {
-    dispatch(handleRightDrawer({open:true, name:'User card'}));
+    dispatch(handleRightDrawer({ open: true, name: "User card" }));
   };
   return (
     <div className="chat-header" onClick={handleOpen}>
       <div className="header-user-info">
         <Avatar src={user.image} />
-        <Typography>
-          {user.fullName}
-        </Typography>
+        <Typography>{user.username}</Typography>
       </div>
       <div className="header-chat-info">
         <BsSearch size={20} />

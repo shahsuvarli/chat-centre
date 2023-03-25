@@ -35,7 +35,7 @@ function NewUserCard() {
             src={user.image}
           />
           <Typography fontSize={23} color="#3b4a54">
-            {user.fullName}
+            {user.username}
           </Typography>
           <Typography fontSize={18} lineHeight={1.5} color="#6d7c87">
             {user.phone}
@@ -45,7 +45,7 @@ function NewUserCard() {
           <Typography color={"#667681"} fontSize={15}>
             About
           </Typography>
-          <Typography>{user.about}</Typography>
+          <Typography>Hi, there!</Typography>
         </Box>
         <Box className="user-card-media">
           <Typography color={"#667681"} fontSize={15}>

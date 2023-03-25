@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <h2 style={{color:'grey'}}>Login</h2>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -82,7 +82,7 @@ const Login = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
-                placeholder="Username"
+                placeholder="Email"
               />
               <span
                 className={
@@ -104,7 +104,12 @@ const Login = () => {
               />
               {errors.password && touched.password && errors.password}
             </React.Fragment>
-            <Button variant="contained" type="submit" disabled={isSubmitting}>
+            <Button
+              id="register-button"
+              variant="contained"
+              type="submit"
+              disabled={isSubmitting}
+            >
               login
             </Button>
             <ToastContainer />

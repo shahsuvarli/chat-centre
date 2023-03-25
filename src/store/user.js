@@ -86,7 +86,7 @@ const initialState = {
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
-  lastMessage: "",
+  lastMessage: "", // this is used to update messages in chat
   loading: true,
 };
 
@@ -107,6 +107,9 @@ const userSlicer = createSlice({
     },
     logout: (state, action) => {
       state.admin = null;
+      state.user = false
+      state.selectedChat = [];
+      state.selectedChatId = "";
       localStorage.removeItem("wpLogin");
       signOut(auth);
     },
