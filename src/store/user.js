@@ -21,10 +21,10 @@ export const getUsers = createAsyncThunk("getUsers", async (hey) => {
   return list;
 });
 
-export const getUser = createAsyncThunk("getUser", async () => {
-  const userRef = (
-    await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))
-  ).data();
+export const getAdmin = createAsyncThunk("getAdmin", async () => {
+  const userRef = localStorage.getItem("wpLogin")
+    ? (await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))).data()
+    : false;
   return userRef;
 });
 
@@ -87,12 +87,16 @@ const initialState = {
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
   lastMessage: "",
+  loading: true,
 };
 
 const userSlicer = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
     register: (state, action) => {
       state.admin = action.payload;
       localStorage.setItem("wpLogin", action.payload.id);
@@ -170,8 +174,9 @@ const userSlicer = createSlice({
     });
 
     // GET ADMIN DETAILS
-    builder.addCase(getUser.fulfilled, (state, action) => {
+    builder.addCase(getAdmin.fulfilled, (state, action) => {
       state.admin = action.payload || null;
+      state.loading = false;
     });
     builder.addCase(getMessages.fulfilled, (state, action) => {
       state.selectedChat = action.payload.messages.reverse();
@@ -180,6 +185,7 @@ const userSlicer = createSlice({
 });
 
 export const {
+  setLoading,
   register,
   login,
   logout,

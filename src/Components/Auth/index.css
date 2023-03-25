@@ -10,6 +10,20 @@
 .auth-box {
   margin-top: 5%;
   margin-right: 10%;
+  /* background-color: rebeccapurple; */
+}
+
+@media screen and (max-width: 500px) {
+  .auth-container{
+    background-color: rebeccapurple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .auth-box {
+    margin: 10% 0;
+    /* width: 90vw; */
+  }
 }
 
 /* LOGIN */

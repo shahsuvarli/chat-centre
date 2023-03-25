@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import React from "react";
 import "./index.css";
 import { BiLoaderCircle } from "react-icons/bi";
@@ -20,7 +20,6 @@ function MenuHeader() {
     <div className="menu-header">
       <Avatar src={admin.image} onClick={() => handleDrawer("Profile")} />
       <div className="menu-icons">
-        {/* <Button onClick={()=>dispatch(logout())}>Logout</Button> */}
         <FaSignOutAlt
           sx={{ color: "#54646f", width: 27, height: 27 }}
           size={size}

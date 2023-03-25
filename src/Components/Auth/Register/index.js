@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { Button } from "@mui/material";
-import { register } from "../../../store/user";
+import { register, setLoading } from "../../../store/user";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { AiFillExclamationCircle } from "react-icons/ai";
@@ -61,13 +61,13 @@ const Register = () => {
 
   React.useEffect(() => {
     switch (error.message) {
-      case "Firebase: Error (auth/user-not-found).":
-        toast.error("Sorry, user not found!", {
+      case "Firebase: Error (auth/email-already-in-use).":
+        toast.error("Sorry, this email is already in us!", {
           position: toast.POSITION.TOP_LEFT,
         });
         break;
-      case "Firebase: Error (auth/wrong-password).":
-        toast.warning("Sorry, wrong password!", {
+      case "Firebase: Password should be at least 6 characters (auth/weak-password).":
+        toast.warning("Sorry, your password is weak!", {
           position: toast.POSITION.TOP_LEFT,
         });
         break;
@@ -106,34 +106,54 @@ const Register = () => {
           if (!values.phone) {
             errors.phone = "Phone number required";
           }
+          if (!values.image) {
+            values.image = {
+              url: "https://linkpicture.com/Images/nlogo.png",
+              name: "no-image",
+            };
+          }
           return errors;
         }}
         onSubmit={(values) => {
           setTimeout(async () => {
-            const result = await createUserWithEmailAndPassword(
+            await createUserWithEmailAndPassword(
               auth,
               values.email,
               values.password
-            );
-            const userRef = doc(db, "users", result.user.uid);
-            const storageRef = ref(storage, `images/${values.image.name}`);
-
-            await uploadBytesResumable(storageRef, values.image).then(() => {
-              getDownloadURL(storageRef).then(async (downloadURL) => {
-                await setDoc(userRef, {
-                  id: result.user.uid,
-                  email: values.email,
-                  password: values.password,
-                  username: values.username,
-                  fullName: values.fullName || String(values.phone),
-                  phone: values.phone,
-                  about: values.about || "Hey! I am using WhatsApp-clone!",
-                  image: downloadURL,
-                  chats: [],
-                });
-              });
-            });
-            dispatch(register((await getDoc(userRef)).data()));
+            )
+              .then(async (res) => {
+                dispatch(setLoading(true));
+                const userRef = doc(db, "users", res.user.uid);
+                const storageRef = ref(storage, `images/${values.image.name}`);
+                await uploadBytesResumable(storageRef, values.image).then(
+                  () => {
+                    getDownloadURL(storageRef)
+                      .then(async (downloadURL) => {
+                        const userObject = {
+                          id: res.user.uid,
+                          email: values.email,
+                          password: values.password,
+                          username: values.username,
+                          fullName: values.fullName || String(values.phone),
+                          phone: values.phone,
+                          about:
+                            values.about || "Hey! I am using WhatsApp-clone!",
+                          image: downloadURL,
+                          chats: [],
+                        };
+                        await setDoc(userRef, userObject);
+                        dispatch(setLoading(false));
+                        return userObject;
+                      })
+                      .then((userObject) => {
+                        dispatch(register(userObject));
+                        setError("");
+                      });
+                  }
+                );
+              })
+              .then((res) => setError("no error"))
+              .catch((err) => setError(err));
           }, 400);
         }}
       >
