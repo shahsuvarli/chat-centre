@@ -6,32 +6,12 @@ import {
   doc,
   getDoc,
   getDocs,
+  query,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
 import moment from "moment";
 import { auth, db } from "../firebase";
-
-export const getUsers = createAsyncThunk("getUsers", async (hey) => {
-  const list = [];
-  const usersRef = await getDocs(collection(db, "users"));
-  usersRef.forEach((doc) => {
-    list.push(doc.data());
-  });
-  return list;
-});
-
-export const getAdmin = createAsyncThunk("getAdmin", async () => {
-  const userRef = localStorage.getItem("wpLogin")
-    ? (await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))).data()
-    : false;
-  return userRef;
-});
-
-export const getMessages = createAsyncThunk("getMessages", async (id) => {
-  const chatRef = (await getDoc(doc(db, "chats", id))).data();
-  return chatRef;
-});
 
 const initialState = {
   admin: null,
@@ -83,12 +63,43 @@ const initialState = {
   selectedChatId: "",
   selectedChat: [],
   people: [],
+  userChats: [],
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
   lastMessage: "", // this is used to update messages in chat
   loading: true,
 };
+
+export const getUsers = createAsyncThunk("getUsers", async () => {
+  const list = [];
+  const usersRef = await getDocs(collection(db, "users"));
+  usersRef.forEach((doc) => {
+    list.push(doc.data());
+  });
+  return list;
+});
+
+export const getUserChats = createAsyncThunk("getUserChats", async (id) => {
+  const list = [];
+  const chatRef = doc(db, "userChat", id);
+  const data = await getDoc(chatRef).then((res) => {
+    return res.data();
+  });
+  return data;
+});
+
+export const getAdmin = createAsyncThunk("getAdmin", async () => {
+  const userRef = localStorage.getItem("wpLogin")
+    ? (await getDoc(doc(db, "users", localStorage.getItem("wpLogin")))).data()
+    : false;
+  return userRef;
+});
+
+export const getMessages = createAsyncThunk("getMessages", async (id) => {
+  const chatRef = (await getDoc(doc(db, "chats", id))).data();
+  return chatRef;
+});
 
 const userSlicer = createSlice({
   name: "user",
@@ -107,7 +118,7 @@ const userSlicer = createSlice({
     },
     logout: (state, action) => {
       state.admin = null;
-      state.user = false
+      state.user = false;
       state.selectedChat = [];
       state.selectedChatId = "";
       localStorage.removeItem("wpLogin");
@@ -122,13 +133,14 @@ const userSlicer = createSlice({
         state.user.id < state.admin.id
           ? state.user.id + state.admin.id
           : state.admin.id + state.user.id;
-      const chatRef = getDoc(doc(db, "chats", concIds));
-      chatRef.then((snap) => {
-        if (!snap.exists()) {
-          const newDocref = doc(db, "chats", concIds);
-          setDoc(newDocref, { messages: [] });
-        }
-      });
+      getDoc(doc(db, "chats", concIds))
+        .then((snap) => {
+          if (!snap.exists()) {
+            const newDocref = doc(db, "chats", concIds);
+            setDoc(newDocref, { messages: [] });
+          }
+        })
+        .catch(() => console.log(""));
       state.selectedChatId = concIds;
     },
     sendMessage: (state, action) => {
@@ -142,7 +154,26 @@ const userSlicer = createSlice({
       updateDoc(doc(db, "chats", state.selectedChatId), {
         messages: arrayUnion(messageObject),
       });
+
       state.lastMessage = action.payload;
+
+      const userChatRef = doc(db, "userChat", state.admin.id);
+      updateDoc(userChatRef, {
+        [state.user.id]: {
+          image: state.user.image,
+          username: state.user.username,
+          lastMes: messageObject,
+        },
+      });
+
+      const userChatRef2 = doc(db, "userChat", state.user.id);
+      updateDoc(userChatRef2, {
+        [state.admin.id]: {
+          image: state.admin.image,
+          username: state.admin.username,
+          lastMes: messageObject,
+        },
+      });
     },
     deleteChat: (state) => {
       state.people = state.people.filter(
@@ -183,6 +214,12 @@ const userSlicer = createSlice({
     });
     builder.addCase(getMessages.fulfilled, (state, action) => {
       state.selectedChat = action.payload.messages.reverse();
+    });
+
+    builder.addCase(getUserChats.fulfilled, (state, action) => {
+      state.userChats = Object.entries(action.payload).map((e) => ({
+        chat: e[1],
+      }));
     });
   },
 });

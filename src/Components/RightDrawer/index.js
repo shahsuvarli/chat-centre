@@ -15,7 +15,7 @@ export default function RightDrawer() {
         setComponent(<NewUserCard />);
         break;
       case "Media":
-        setComponent(<UserMedia />);
+        // setComponent(<UserMedia />);
         break;
       default:
         break;

@@ -34,7 +34,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h2 style={{color:'grey'}}>Login</h2>
+      <h2 style={{ color: "grey" }}>Login</h2>
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -51,11 +51,13 @@ const Login = () => {
         onSubmit={(values, { setSubmitting }) => {
           signInWithEmailAndPassword(auth, values.email, values.password)
             .then(async (res) => {
+              dispatch(setLoading(true));
               const user = (
                 await getDoc(doc(db, "users", res.user.uid))
               ).data();
               batch(() => {
                 dispatch(login(user));
+                dispatch(setLoading(false));
               });
             })
             .catch((err) => {

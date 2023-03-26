@@ -92,9 +92,9 @@ const Register = () => {
               .then(async (res) => {
                 dispatch(setLoading(true));
                 const userRef = doc(db, "users", res.user.uid);
-                values.image = {
+                values.image = values.image || {
                   url: "https://linkpicture.com/Images/nlogo.png",
-                  name: "no-image",
+                  name: "no-images",
                 };
                 const storageRef = ref(storage, `images/${values.image.name}`);
                 await uploadBytesResumable(storageRef, values.image).then(
@@ -107,9 +107,10 @@ const Register = () => {
                           password: values.password,
                           username: values.username,
                           image: downloadURL,
-                          chats: [],
                         };
                         await setDoc(userRef, userObject);
+                        const userChat = doc(db, "userChat", res.user.uid);
+                        await setDoc(userChat, {});
                         dispatch(setLoading(false));
                         return userObject;
                       })
