@@ -49,7 +49,7 @@ function FullWidthTabs() {
   return (
     <Box
       sx={{
-        bgcolor: "#fffafa",
+        bgcolor: "#fff",
         width: 500,
         borderRadius: 2,
         boxShadow: "0px 0px 10px 5px grey",
@@ -57,7 +57,7 @@ function FullWidthTabs() {
     >
       <AppBar position="static">
         <Tabs
-        className="tab-container"
+          className="tab-container"
           value={value}
           onChange={handleChange}
           TabIndicatorProps={{ style: { backgroundColor: "#128C7E" } }}
@@ -90,9 +90,7 @@ function FullWidthTabs() {
 function Auth() {
   return (
     <div className="auth-container">
-      <div className="auth-box">
-        <FullWidthTabs />
-      </div>
+      <FullWidthTabs />
     </div>
   );
 }

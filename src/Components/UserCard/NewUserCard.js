@@ -45,7 +45,7 @@ function NewUserCard() {
           <Typography color={"#667681"} fontSize={15}>
             About
           </Typography>
-          <Typography>Hi, there!</Typography>
+          <Typography>{user.about}</Typography>
         </Box>
         <Box className="user-card-media">
           <Typography color={"#667681"} fontSize={15}>

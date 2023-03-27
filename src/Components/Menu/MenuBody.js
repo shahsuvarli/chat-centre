@@ -12,7 +12,9 @@ function MenuBody() {
   const { admin, userChats, lastMessage } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    dispatch(getUserChats(admin.id));
+    // setInterval(() => {
+      dispatch(getUserChats(admin.id));
+    // }, 500);
   }, [lastMessage]);
 
   const handleUser = (person) => {

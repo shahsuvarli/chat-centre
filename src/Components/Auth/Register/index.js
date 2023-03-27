@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { Avatar, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { register, setLoading } from "../../../store/user";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
@@ -106,6 +106,7 @@ const Register = () => {
                           email: values.email,
                           password: values.password,
                           username: values.username,
+                          about: "Hey there! I am using whatsapp-clone.",
                           image: downloadURL,
                         };
                         await setDoc(userRef, userObject);
