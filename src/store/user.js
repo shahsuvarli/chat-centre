@@ -6,7 +6,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  query,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -15,50 +14,6 @@ import { auth, db } from "../firebase";
 
 const initialState = {
   admin: null,
-  // admin: {
-  //   id: 0,
-  //   name: "Elvin",
-  //   surname: "Shahsuvarli",
-  //   username: "shahsuvarli",
-  //   phone: "351 9033",
-  //   image: "https://i.ibb.co/GV4pCwH/IMG-4973-1.png",
-  //   about: "Software Developer",
-  //   messages: [
-  //     {
-  //       text: "A watched pot never boils",
-  //       timestamp: "2023-02-17 12:35:00",
-  //       read: true,
-  //       isSenderMe: false,
-  //     },
-  //     {
-  //       text: "You can't judge a book by its cover",
-  //       timestamp: "2023-02-17 12:45:00",
-  //       read: true,
-  //       isSenderMe: true,
-  //     },
-  //     {
-  //       text: "Time heals all wounds",
-  //       timestamp: "2023-02-18 00:07:00",
-  //       read: true,
-  //       isSenderMe: true,
-  //     },
-  //   ],
-  //   media: [
-  //     {
-  //       name: "Media",
-  //       list: [
-  //         "https://fastly.picsum.photos/id/1054/200/300.jpg?hmac=2AMkQJkHozCbGVYoPJsFwSYmOfmPcPMYd0RtXMm-I2A",
-  //         "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
-  //         "https://randomuser.me/api/portraits/women/8.jpg",
-  //       ],
-  //     },
-  //     { name: "Docs", list: ["invoice.pdf"] },
-  //     {
-  //       name: "Links",
-  //       list: ["https://facebook.com", "https://twitter.com"],
-  //     },
-  //   ],
-  // },
   user: false,
   selectedChatId: "",
   selectedChat: [],
@@ -81,7 +36,6 @@ export const getUsers = createAsyncThunk("getUsers", async () => {
 });
 
 export const getUserChats = createAsyncThunk("getUserChats", async (id) => {
-  const list = [];
   const chatRef = doc(db, "userChat", id);
   const data = await getDoc(chatRef).then((res) => {
     return res.data();
@@ -160,18 +114,16 @@ const userSlicer = createSlice({
       const userChatRef = doc(db, "userChat", state.admin.id);
       updateDoc(userChatRef, {
         [state.user.id]: {
-          image: state.user.image,
-          username: state.user.username,
-          lastMes: messageObject,
+          user: state.user,
+          message: messageObject,
         },
       });
 
       const userChatRef2 = doc(db, "userChat", state.user.id);
       updateDoc(userChatRef2, {
         [state.admin.id]: {
-          image: state.admin.image,
-          username: state.admin.username,
-          lastMes: messageObject,
+          user: state.admin,
+          message: messageObject,
         },
       });
     },

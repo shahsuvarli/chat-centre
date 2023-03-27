@@ -101,11 +101,11 @@ function NewUserCard() {
         <Box className="user-card-ops">
           <div>
             <ImBlocked />
-            <Typography>Block {user.name}</Typography>
+            <Typography>Block {user.username}</Typography>
           </div>
           <div>
             <AiFillDislike />
-            <Typography>Report {user.name}</Typography>
+            <Typography>Report {user.username}</Typography>
           </div>
           <div onClick={handleDelete}>
             <MdDelete />

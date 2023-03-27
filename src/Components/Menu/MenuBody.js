@@ -9,7 +9,7 @@ import { getUserChats, handleRightDrawer, selectUser } from "../../store/user";
 function MenuBody() {
   const [search, setSearch] = React.useState("");
   const dispatch = useDispatch();
-  const { people, admin, userChats, lastMessage } = useSelector((state) => state.user);
+  const { admin, userChats, lastMessage } = useSelector((state) => state.user);
 
   React.useEffect(() => {
     dispatch(getUserChats(admin.id));
@@ -40,37 +40,34 @@ function MenuBody() {
       <div className="chats-container">
         {userChats
           .filter((chat) =>
-            chat.chat.username
-              // .concat(` ${person.surname}`)
-              .toLowerCase()
-              .includes(search)
+            chat.chat.user.username.toLowerCase().includes(search)
           )
           .sort((a, b) => {
-            return a.chat.username.localeCompare(b.chat.username);
+            return a.chat.user.username.localeCompare(b.chat.user.username);
           })
-          // .sort((a, b) => {
-          //   return b.messages[b.messages.length - 1].timestamp.localeCompare(
-          //     a.messages[a.messages.length - 1].timestamp
-          //   );
-          // })
+          .sort((a, b) => {
+            return b.chat.message.timestamp.localeCompare(
+              a.chat.message.timestamp
+            );
+          })
           .map((chat) => {
             return (
               <Box
                 className="chat-card"
-                key={chat.chat.username}
-                onClick={() => handleUser(chat.chat.username)}
+                key={chat.chat.user.username}
+                onClick={() => handleUser(chat.chat.user)}
               >
-                <Avatar sx={{ width: 50, height: 50 }} src={chat.chat.image} />
+                <Avatar
+                  sx={{ width: 50, height: 50 }}
+                  src={chat.chat.user.image}
+                />
                 <div className="menu-chat-body">
                   <div>
                     <Typography variant="body1">
-                      {chat.chat.username}
+                      {chat.chat.user.username}
                     </Typography>
                     <Typography color="#677782" fontSize={13}>
-                      {/* {person.messages[
-                        person.messages.length - 1
-                      ].timestamp.slice(11, 16)} */}
-                      *time*
+                      {chat.chat.message.timestamp.slice(11, 16)}
                     </Typography>
                   </div>
                   <Typography
@@ -80,8 +77,7 @@ function MenuBody() {
                     className="message"
                     textAlign={"left"}
                   >
-                    {/* {person.messages[person.messages.length - 1].text} */}
-                    *last message*
+                    {chat.chat.message.text}
                   </Typography>
                 </div>
               </Box>

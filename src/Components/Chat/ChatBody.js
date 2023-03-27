@@ -9,11 +9,13 @@ function ChatBody() {
     (state) => state.user
   );
   const dispatch = useDispatch();
+
   useEffect(() => {
     setTimeout(() => {
       dispatch(getMessages(selectedChatId));
     }, 500);
   }, [selectedChatId, lastMessage]);
+
   return (
     <div className="chat-body">
       {selectedChat.map((message, index) => {
