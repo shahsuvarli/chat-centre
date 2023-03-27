@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserChats, handleRightDrawer, selectUser } from "../../store/user";
+import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
@@ -12,9 +13,7 @@ function MenuBody() {
   const { admin, userChats, lastMessage } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    // setInterval(() => {
-      dispatch(getUserChats(admin.id));
-    // }, 500);
+    dispatch(getUserChats(admin.id));
   }, [lastMessage]);
 
   const handleUser = (person) => {
@@ -56,7 +55,7 @@ function MenuBody() {
             return (
               <Box
                 className="chat-card"
-                key={chat.chat.user.username}
+                key={chat.chat.user.email}
                 onClick={() => handleUser(chat.chat.user)}
               >
                 <Avatar
@@ -85,6 +84,11 @@ function MenuBody() {
               </Box>
             );
           })}
+        <div className="no-chat-display">
+          You can always click &nbsp;
+          <BsFillChatLeftTextFill size={20}/>
+          &nbsp; icon on top and find new people to chat!
+        </div>
       </div>
     </div>
   );

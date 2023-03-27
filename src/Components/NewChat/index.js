@@ -73,7 +73,7 @@ function NewChat() {
           #
         </Typography>
         {people
-          .filter((a) => a.id)
+          .filter((a) => a.id !== admin.id)
           .sort((a, b) => {
             return a.username.localeCompare(b.username);
           })
