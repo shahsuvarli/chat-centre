@@ -4,17 +4,26 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserChats, handleRightDrawer, selectUser } from "../../store/user";
+import {
+  getUserChats,
+  handleRightDrawer,
+  selectUser,
+} from "../../store/user";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
   const dispatch = useDispatch();
-  const { admin, userChats, lastMessage } = useSelector((state) => state.user);
+  const { admin, userChats } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    dispatch(getUserChats(admin.id));
-  }, [lastMessage]);
+    const sub = onSnapshot(collection(db, "chats"), () =>
+      dispatch(getUserChats(admin.id))
+    );
+    return sub;
+  }, []);
 
   const handleUser = (person) => {
     dispatch(handleRightDrawer({ open: false, name: "" }));
@@ -86,7 +95,7 @@ function MenuBody() {
           })}
         <div className="no-chat-display">
           You can always click &nbsp;
-          <BsFillChatLeftTextFill size={20}/>
+          <BsFillChatLeftTextFill size={20} />
           &nbsp; icon on top and find new people to chat!
         </div>
       </div>
