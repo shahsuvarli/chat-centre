@@ -3,20 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { getMessages } from "../../store/user";
 import { Done } from "@mui/icons-material";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function ChatBody() {
-  const { selectedChatId, selectedChat, admin } = useSelector(
+  const { selectedChatId, selectedChat, admin, user } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const sub = onSnapshot(collection(db, "userChat"), () => {
-      dispatch(getMessages(selectedChatId));
-    });
-    return sub;
+    setTimeout(() => {
+      const q = query(
+        collection(db, "userChatN", admin.id, user.id),
+        where("user", "==", user)
+      );
+      onSnapshot(q, (doc) => {
+        doc.forEach(() => {
+          dispatch(getMessages(selectedChatId));
+        });
+      });
+    }, 200);
   }, [selectedChatId]);
 
   return (

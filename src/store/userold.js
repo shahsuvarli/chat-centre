@@ -7,7 +7,6 @@ import {
   getDoc,
   getDocs,
   setDoc,
-  updateDoc,
   writeBatch,
 } from "firebase/firestore";
 import moment from "moment";
@@ -56,13 +55,10 @@ const userSlicer = createSlice({
       state.loading = action.payload;
     },
     selectChat: (state, action) => {
-      console.log(action.payload)
-      // console.log(action.payload);
-      // const lis = [];
-      // action.payload.forEach((d) => {
-        // lis.push(d.data());
-      // });
-      // state.userChats = lis;
+      // state.selectedChat = action.payload
+      state.userChats = Object.entries(action.payload).map((e) => ({
+        chat: e[1],
+      }));
     },
     register: (state, action) => {
       state.admin = action.payload;
@@ -72,7 +68,7 @@ const userSlicer = createSlice({
       state.admin = action.payload;
       localStorage.setItem("wpLogin", action.payload.id);
     },
-    logout: (state) => {
+    logout: (state, action) => {
       state.admin = null;
       state.user = false;
       state.selectedChat = [];
@@ -107,21 +103,26 @@ const userSlicer = createSlice({
         senderId: state.admin.id,
       };
 
-      // const userChatRef = doc(db, "userChat", state.admin.id);
-      // const userChatRef2 = doc(db, "userChat", state.user.id);
-      const batch = writeBatch(db);
+      const userChatRef = doc(db, "userChat", state.admin.id);
+      const userChatRef2 = doc(db, "userChat", state.user.id);
 
-      setDoc(doc(db, "userChatN", state.user.id, state.admin.id, "message"), {
-        user: state.admin,
-        message: messageObject,
-      });
-      setDoc(doc(db, "userChatN", state.admin.id, state.user.id, "message"), {
-        user: state.user,
-        message: messageObject,
-      });
+      const batch = writeBatch(db);
 
       batch.update(doc(db, "chats", state.selectedChatId), {
         messages: arrayUnion(messageObject),
+      });
+      batch.update(userChatRef, {
+        [state.user.id]: {
+          user: state.user,
+          message: messageObject,
+        },
+      });
+
+      batch.update(userChatRef2, {
+        [state.admin.id]: {
+          user: state.admin,
+          message: messageObject,
+        },
       });
 
       batch.commit();

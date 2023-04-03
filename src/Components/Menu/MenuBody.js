@@ -4,25 +4,25 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getUserChats,
-  handleRightDrawer,
-  selectUser,
-} from "../../store/user";
+import { handleRightDrawer, selectChat, selectUser } from "../../store/user";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
-import { collection, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  collectionGroup,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
   const dispatch = useDispatch();
-  const { admin, userChats } = useSelector((state) => state.user);
+  const { admin, userChats, user } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    const sub = onSnapshot(collection(db, "chats"), () =>
-      dispatch(getUserChats(admin.id))
-    );
-    return sub;
+    onSnapshot(collection(db, "userChatN"), (doc) => {
+      dispatch(selectChat(doc));
+    });
   }, []);
 
   const handleUser = (person) => {
@@ -49,35 +49,28 @@ function MenuBody() {
       </div>
       <div className="chats-container">
         {userChats
-          .filter((chat) =>
-            chat.chat.user.username.toLowerCase().includes(search)
-          )
+          .filter((chat) => chat.user.username.toLowerCase().includes(search))
           .sort((a, b) => {
-            return a.chat.user.username.localeCompare(b.chat.user.username);
+            return a.user.username.localeCompare(b.user.username);
           })
           .sort((a, b) => {
-            return b.chat.message.timestamp.localeCompare(
-              a.chat.message.timestamp
-            );
+            return b.message.timestamp.localeCompare(a.message.timestamp);
           })
           .map((chat) => {
             return (
               <Box
                 className="chat-card"
-                key={chat.chat.user.email}
-                onClick={() => handleUser(chat.chat.user)}
+                key={chat.user.email}
+                onClick={() => handleUser(chat.user)}
               >
-                <Avatar
-                  sx={{ width: 50, height: 50 }}
-                  src={chat.chat.user.image}
-                />
+                <Avatar sx={{ width: 50, height: 50 }} src={chat.user.image} />
                 <div className="menu-chat-body">
                   <div>
                     <Typography variant="body1">
-                      {chat.chat.user.username}
+                      {chat.user.username}
                     </Typography>
                     <Typography color="#677782" fontSize={13}>
-                      {chat.chat.message.timestamp.slice(11, 16)}
+                      {chat.message.timestamp.slice(11, 16)}
                     </Typography>
                   </div>
                   <Typography
@@ -87,7 +80,7 @@ function MenuBody() {
                     className="message"
                     textAlign={"left"}
                   >
-                    {chat.chat.message.text}
+                    {chat.message.text}
                   </Typography>
                 </div>
               </Box>
