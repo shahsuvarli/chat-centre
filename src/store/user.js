@@ -22,7 +22,6 @@ const initialState = {
   leftDrawer: { open: false, name: "" },
   rightDrawer: { open: false, name: "" },
   selectedMedia: [1],
-  lastMessage: "", // this is used to update messages in chat
   loading: true,
 };
 
@@ -33,6 +32,15 @@ export const getUsers = createAsyncThunk("getUsers", async () => {
     list.push(doc.data());
   });
   return list;
+});
+
+export const getChats = createAsyncThunk("getChats", async (id) => {
+  const lis = [];
+  const chatRef = await getDocs(collection(db, `users/${id}/messages`));
+  chatRef.forEach((doc) => {
+    lis.push(doc.data());
+  });
+  return lis;
 });
 
 export const getAdmin = createAsyncThunk("getAdmin", async () => {
@@ -53,13 +61,6 @@ const userSlicer = createSlice({
   reducers: {
     setLoading: (state, action) => {
       state.loading = action.payload;
-    },
-    selectChat: (state, action) => {
-      const lis = [];
-      action.payload.forEach((d) => {
-        lis.push(d.data());
-      });
-      state.userChats = lis;
     },
     register: (state, action) => {
       state.admin = action.payload;
@@ -106,11 +107,11 @@ const userSlicer = createSlice({
 
       const batch = writeBatch(db);
 
-      setDoc(doc(db, "userChat", state.user.id, "messages", state.user.id), {
+      setDoc(doc(db, "users", state.user.id, "messages", state.admin.id), {
         user: state.admin,
         message: messageObject,
       });
-      setDoc(doc(db, "userChat", state.admin.id, "messages", state.user.id), {
+      setDoc(doc(db, "users", state.admin.id, "messages", state.user.id), {
         user: state.user,
         message: messageObject,
       });
@@ -161,13 +162,15 @@ const userSlicer = createSlice({
     builder.addCase(getMessages.fulfilled, (state, action) => {
       state.selectedChat = action.payload.messages.reverse();
     });
+    builder.addCase(getChats.fulfilled, (state, action) => {
+      state.userChats = action.payload;
+    });
   },
 });
 
 export const {
   setLoading,
   register,
-  selectChat,
   login,
   logout,
   selectChatId,

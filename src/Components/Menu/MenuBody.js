@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { handleRightDrawer, selectChat, selectUser } from "../../store/user";
+import { getChats, handleRightDrawer, selectUser } from "../../store/user";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -15,8 +15,8 @@ function MenuBody() {
   const { userChats, admin } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    onSnapshot(collection(db, `userChat/${admin.id}/messages`), (doc) => {
-      dispatch(selectChat(doc));
+    onSnapshot(collection(db, `users/${admin.id}/messages`), () => {
+      dispatch(getChats(admin.id));
     });
   }, []);
 

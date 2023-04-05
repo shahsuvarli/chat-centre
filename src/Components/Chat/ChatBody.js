@@ -15,7 +15,7 @@ function ChatBody() {
   useEffect(() => {
     setTimeout(() => {
       const q = query(
-        collection(db, "userChat", admin.id, 'messages'),
+        collection(db, "users", admin.id, 'messages'),
         where("user", "==", user)
       );
       onSnapshot(q, (doc) => {
