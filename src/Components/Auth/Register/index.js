@@ -110,8 +110,6 @@ const Register = () => {
                           image: downloadURL,
                         };
                         await setDoc(userRef, userObject);
-                        // const userChat = doc(db, "userChat", res.user.uid);
-                        // await setDoc(userChat, {});
                         dispatch(setLoading(false));
                         return userObject;
                       })

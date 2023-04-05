@@ -7,7 +7,6 @@ import {
   getDoc,
   getDocs,
   setDoc,
-  updateDoc,
   writeBatch,
 } from "firebase/firestore";
 import moment from "moment";
@@ -56,13 +55,11 @@ const userSlicer = createSlice({
       state.loading = action.payload;
     },
     selectChat: (state, action) => {
-      console.log(action.payload)
-      // console.log(action.payload);
-      // const lis = [];
-      // action.payload.forEach((d) => {
-        // lis.push(d.data());
-      // });
-      // state.userChats = lis;
+      const lis = [];
+      action.payload.forEach((d) => {
+        lis.push(d.data());
+      });
+      state.userChats = lis;
     },
     register: (state, action) => {
       state.admin = action.payload;
@@ -107,15 +104,13 @@ const userSlicer = createSlice({
         senderId: state.admin.id,
       };
 
-      // const userChatRef = doc(db, "userChat", state.admin.id);
-      // const userChatRef2 = doc(db, "userChat", state.user.id);
       const batch = writeBatch(db);
 
-      setDoc(doc(db, "userChatN", state.user.id, state.admin.id, "message"), {
+      setDoc(doc(db, "userChat", state.user.id, "messages", state.user.id), {
         user: state.admin,
         message: messageObject,
       });
-      setDoc(doc(db, "userChatN", state.admin.id, state.user.id, "message"), {
+      setDoc(doc(db, "userChat", state.admin.id, "messages", state.user.id), {
         user: state.user,
         message: messageObject,
       });

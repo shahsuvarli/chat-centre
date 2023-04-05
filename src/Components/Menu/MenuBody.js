@@ -6,21 +6,16 @@ import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { handleRightDrawer, selectChat, selectUser } from "../../store/user";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
-import {
-  collection,
-  collectionGroup,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function MenuBody() {
   const [search, setSearch] = React.useState("");
   const dispatch = useDispatch();
-  const { admin, userChats, user } = useSelector((state) => state.user);
+  const { userChats, admin } = useSelector((state) => state.user);
 
   React.useEffect(() => {
-    onSnapshot(collection(db, "userChatN"), (doc) => {
+    onSnapshot(collection(db, `userChat/${admin.id}/messages`), (doc) => {
       dispatch(selectChat(doc));
     });
   }, []);

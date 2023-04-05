@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { getMessages } from "../../store/user";
 import { Done } from "@mui/icons-material";
-import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "../../firebase";
 
 function ChatBody() {
@@ -15,7 +15,7 @@ function ChatBody() {
   useEffect(() => {
     setTimeout(() => {
       const q = query(
-        collection(db, "userChatN", admin.id, user.id),
+        collection(db, "userChat", admin.id, 'messages'),
         where("user", "==", user)
       );
       onSnapshot(q, (doc) => {
