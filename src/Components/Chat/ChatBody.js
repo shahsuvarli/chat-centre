@@ -15,11 +15,11 @@ function ChatBody() {
   useEffect(() => {
     setTimeout(() => {
       const q = query(
-        collection(db, "users", admin.id, 'messages'),
+        collection(db, "users", admin.id, "messages"),
         where("user", "==", user)
       );
-      onSnapshot(q, (doc) => {
-        doc.forEach(() => {
+      onSnapshot(q, (snap) => {
+        snap.forEach(() => {
           dispatch(getMessages(selectedChatId));
         });
       });

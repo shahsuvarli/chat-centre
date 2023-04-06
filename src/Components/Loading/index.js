@@ -1,6 +1,6 @@
 import React from "react";
 import "./index.css";
-import spinner from "../../images/spinner.jpeg";
+import spinner from "../../images/spinner.svg";
 
 function Loading() {
   return (

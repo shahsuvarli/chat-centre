@@ -44,6 +44,7 @@ function MenuBody() {
       </div>
       <div className="chats-container">
         {userChats
+          .filter((chat) => chat.message.text !== "")
           .filter((chat) => chat.user.username.toLowerCase().includes(search))
           .sort((a, b) => {
             return a.user.username.localeCompare(b.user.username);

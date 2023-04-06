@@ -169,7 +169,7 @@ const Register = () => {
             <label id="file-label" htmlFor="file">
               <span>
                 <CloudUploadIcon
-                  sx={{ color: "#128C7E", width: 40, height: 40 }}
+                  sx={{ color: "#216ca6", width: 40, height: 40 }}
                 />
               </span>
               <p className={`${values.image ? "selected" : "not-selected"}`}>

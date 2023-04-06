@@ -28,7 +28,7 @@ function Profile() {
         />
       </Box>
       <Box className="profile-data profile-box">
-        <Typography fontSize={14} color="#008069">
+        <Typography fontSize={14} color="#216CA6">
           Your name
         </Typography>
         <div className="editable-div">
@@ -43,7 +43,7 @@ function Profile() {
         WhatsApp contacts.
       </Typography>
       <Box className="profile-about profile-box">
-        <Typography fontSize={14} color="#008069">
+        <Typography fontSize={14} color="#216CA6">
           About
         </Typography>
         <div className="editable-div">

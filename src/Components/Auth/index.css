@@ -62,7 +62,7 @@ form ::placeholder {
 }
 
 .selected {
-  color: #128c7e;
+  color: #216CA6;
   font-weight: bold;
   font-size: 20px;
 }
@@ -102,16 +102,16 @@ form ::placeholder {
 }
 
 #register-button {
-  background-color: #128c7e;
+  background-color: #216ca6;
   color: #fff;
   font-weight: bold;
   margin-top: 20px;
 }
 
 #register-button:hover {
-  background-color: rgba(18, 140, 126, 0.891);
+  background-color: rgba(33, 108, 166, 0.891);
 }
 
 .tab-container {
-  background-color: rgba(18, 140, 126, 0.891) !important;
+  background-color: rgba(33, 108, 166, 0.891) !important;
 }

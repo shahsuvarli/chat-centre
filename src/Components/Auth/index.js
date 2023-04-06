@@ -60,7 +60,7 @@ function FullWidthTabs() {
           className="tab-container"
           value={value}
           onChange={handleChange}
-          TabIndicatorProps={{ style: { backgroundColor: "#128C7E" } }}
+          TabIndicatorProps={{ style: { backgroundColor: "#216CA6" } }}
           textColor="inherit"
           variant="fullWidth"
           aria-label="full width tabs example"

@@ -103,9 +103,9 @@
 }
 
 .message-content {
-  background-color: #d9fdd2;
+  background-color: #f1f4f7;
   box-shadow: 1px 1px 1px #646363;
-  color: #111b21;
+  color: #000;
   min-height: 10px;
   padding: 5px 10px 3px 10px;
   border-radius: 10px;

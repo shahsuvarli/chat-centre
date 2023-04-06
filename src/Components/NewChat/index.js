@@ -46,7 +46,7 @@ function NewChat() {
           return (
             <div className="newchat-card" key={index}>
               <Avatar
-                sx={{ backgroundColor: "#04a784", width: 50, height: 50 }}
+                sx={{ backgroundColor: "#216CA6", width: 50, height: 50 }}
               >
                 {card.icon}
               </Avatar>
@@ -54,12 +54,12 @@ function NewChat() {
             </div>
           );
         })}
-        <Typography color={"#04a784"} margin={3}>
+        <Typography color={"#216CA6"} margin={3}>
           CONTACTS ON WHATSAPP
         </Typography>
         <div className="newchat-card" onClick={() => handleChat(admin)}>
           <Avatar
-            sx={{ backgroundColor: "#04a784", width: 50, height: 50 }}
+            sx={{ backgroundColor: "#216CA6", width: 50, height: 50 }}
             src={admin.image}
           ></Avatar>
           <div className="new-people-card">
@@ -69,7 +69,7 @@ function NewChat() {
             </Typography>
           </div>
         </div>
-        <Typography color={"#04a784"} margin={3}>
+        <Typography color={"#216CA6"} margin={3}>
           #
         </Typography>
         {people
@@ -85,7 +85,7 @@ function NewChat() {
                 onClick={() => handleChat(person)}
               >
                 <Avatar
-                  sx={{ backgroundColor: "#04a784", width: 50, height: 50 }}
+                  sx={{ backgroundColor: "#216CA6", width: 50, height: 50 }}
                   src={person.image}
                 ></Avatar>
                 <div className="new-people-card">

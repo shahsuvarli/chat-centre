@@ -50,8 +50,8 @@ export const getAdmin = createAsyncThunk("getAdmin", async () => {
   return userRef;
 });
 
-export const getMessages = createAsyncThunk("getMessages", async (id) => {
-  const chatRef = (await getDoc(doc(db, "chats", id))).data();
+export const getMessages = createAsyncThunk("getMessages", async (userId) => {
+  const chatRef = (await getDoc(doc(db, "chats", userId))).data();
   return chatRef;
 });
 
@@ -94,7 +94,7 @@ const userSlicer = createSlice({
             setDoc(newDocref, { messages: [] });
           }
         })
-        .catch(() => console.log(""));
+        .catch((err) => console.log(err));
       state.selectedChatId = concIds;
     },
     sendMessage: (state, action) => {
