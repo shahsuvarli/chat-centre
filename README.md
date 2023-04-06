@@ -40,3 +40,13 @@ Usage
 1.  Create a new account or log in with an existing account.
 2.  Click on an existing chat or create a new chat.
 3.  Send and receive real-time chat messages with other users.
+
+Credits
+-----
+
+This project was built as part of a ReactJS course.
+
+License
+-----
+
+This project is licensed under the MIT License.
