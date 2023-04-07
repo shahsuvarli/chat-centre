@@ -82,6 +82,7 @@ const userSlicer = createSlice({
       state.people = action.payload;
     },
     selectUser: (state, action) => {
+      state.selectedChat = []
       state.user = action.payload;
       const concIds =
         state.user.id < state.admin.id
