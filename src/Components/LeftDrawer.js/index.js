@@ -37,7 +37,7 @@ export default function LeftDrawer() {
   return (
     <React.Fragment>
       <Drawer
-        sx={{ width: 0 }}
+        sx={{ width: 0, zIndex:10 }}
         hideBackdrop={true}
         anchor="left"
         open={leftDrawer.open}

@@ -83,9 +83,11 @@ function MenuBody() {
             );
           })}
         <div className="no-chat-display">
-          You can always click &nbsp;
-          <BsFillChatLeftTextFill size={20} />
-          &nbsp; icon on top and find new people to chat!
+          <Typography lineHeight={2}>
+            Discover new chat partners easily by clicking on the top icon &nbsp;
+            <BsFillChatLeftTextFill size={20} />
+            &nbsp;.
+          </Typography>
         </div>
       </div>
     </div>

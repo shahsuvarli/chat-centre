@@ -51,8 +51,8 @@ function FullWidthTabs() {
       sx={{
         bgcolor: "#fff",
         width: 500,
-        borderRadius: 2,
-        boxShadow: "0px 0px 10px 5px grey",
+        boxShadow: "0px 0px 10px 10px #fff",
+        border:'1px solid #206DAB'
       }}
     >
       <AppBar position="static">
@@ -66,7 +66,6 @@ function FullWidthTabs() {
           aria-label="full width tabs example"
         >
           <Tab
-            // style={{ backgroundColor: "#128C7E" }}
             label="Login"
             {...a11yProps(0)}
           />

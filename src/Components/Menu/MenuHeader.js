@@ -1,7 +1,6 @@
 import { Avatar } from "@mui/material";
 import React from "react";
 import "./index.css";
-import { BiLoaderCircle } from "react-icons/bi";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { FiMoreVertical } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,13 +31,6 @@ function MenuHeader() {
           color="#54646f"
           onClick={() => {
             handleDrawer("Communities");
-          }}
-        />
-        <BiLoaderCircle
-          size={size}
-          color="#54646f"
-          onClick={() => {
-            handleDrawer("Status");
           }}
         />
         <BsFillChatLeftTextFill

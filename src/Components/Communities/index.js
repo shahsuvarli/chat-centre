@@ -1,13 +1,25 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import "./index.css";
+import { styled } from "@mui/material/styles";
+
+const StyledButton = styled(Button)`
+  font-weight: bold;
+  letter-spacing: 1.25;
+  padding: 7px 30px;
+  margin-top: 1;
+  background-color: #216ca6;
+  :hover {
+    background-color: #1b527c !important;
+  }
+`;
 
 function Communities() {
   return (
     <div className="communities-container">
       <img
-        style={{ width: 250 }}
-        src={require("../../images/community.png")}
+        style={{ width: 350 }}
+        src={require("../../images/com.jpg")}
         alt="communities"
       />
       <Typography fontWeight={700} variant="h2" fontSize={24}>
@@ -19,21 +31,9 @@ function Communities() {
         textAlign={"center"}
         width={350}
       >
-        Easyliy organize your related groups and send announcements. Now your
-        communities, like neighborhoods or schools can have their own space
+        Get ready to effortlessly keep your social groups in check and spread the word with style!
       </Typography>
-      <Button
-        sx={{
-          fontWeight: "bold",
-          letterSpacing: 1.25,
-          padding: "7px 30px",
-          marginTop: 1,
-          backgroundColor: "#216CA6",
-        }}
-        variant="contained"
-      >
-        START A COMMUNITY
-      </Button>
+      <StyledButton variant="contained">START A COMMUNITY</StyledButton>
     </div>
   );
 }

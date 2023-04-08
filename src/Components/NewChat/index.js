@@ -30,7 +30,7 @@ function NewChat() {
       <div className="search-bar">
         <div className="textbox-container">
           <label htmlFor="search">
-            <BsSearch size={20} />
+            <BsSearch size={20} color="#54646f" />
           </label>
           <input
             placeholder="Search contacts"
@@ -73,6 +73,7 @@ function NewChat() {
           #
         </Typography>
         {people
+          .filter((a) => a.username.toLowerCase().includes(search))
           .filter((a) => a.id !== admin.id)
           .sort((a, b) => {
             return a.username.localeCompare(b.username);
