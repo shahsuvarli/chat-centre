@@ -1,4 +1,4 @@
-Chat Application using ReactJS and Firebase
+💬 Chat Centre: A chat application built using ReactJS and Firebase.
 ===========================================
 
 Description
@@ -16,12 +16,17 @@ Overall, this chat application provides a simple and intuitive way for users to 
 Technologies Used
 -----------------
 
--   ReactJS
--   Firebase Authentication
--   Firebase Cloud Firestore
--   Redux-Toolkit
--   Material UI
--   Netlify Hosting
+🔥 ReactJS
+
+🔒 Firebase Authentication
+
+☁️ Firebase Cloud Firestore
+
+🧰 Redux-Toolkit
+
+🎨 Material UI
+
+🌐 Netlify Hosting
 
 Features
 --------
