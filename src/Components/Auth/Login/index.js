@@ -40,11 +40,14 @@ const Login = () => {
         validate={(values) => {
           const errors = {};
           if (!values.email) {
-            errors.email = "Required";
+            errors.email = "Email required";
           } else if (
             !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
             errors.email = "Invalid email address";
+          }
+          if (!values.password) {
+            errors.password = "Password required";
           }
           return errors;
         }}
@@ -104,7 +107,16 @@ const Login = () => {
                 value={values.password}
                 placeholder="Password"
               />
-              {errors.password && touched.password && errors.password}
+              <span
+                className={
+                  errors.password && touched.password && errors.password
+                    ? "error-show"
+                    : "error-hide"
+                }
+              >
+                <AiFillExclamationCircle />
+                {errors.password && touched.password && errors.password}
+              </span>
             </React.Fragment>
             <Button
               id="register-button"

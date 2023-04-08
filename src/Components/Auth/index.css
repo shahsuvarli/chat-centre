@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../images/back1.png');
+  background-image: url("../../images/back1.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -64,7 +64,7 @@ form ::placeholder {
 }
 
 .selected {
-  color: #216CA6;
+  color: #216ca6;
   font-weight: bold;
   font-size: 20px;
 }

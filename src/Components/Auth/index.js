@@ -52,7 +52,7 @@ function FullWidthTabs() {
         bgcolor: "#fff",
         width: 500,
         boxShadow: "0px 0px 10px 10px #fff",
-        border:'1px solid #206DAB'
+        border: "1px solid #206DAB",
       }}
     >
       <AppBar position="static">
@@ -65,15 +65,8 @@ function FullWidthTabs() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab
-            label="Login"
-            {...a11yProps(0)}
-          />
-          <Tab
-            // style={{ backgroundColor: "#128C7E" }}
-            label="Register"
-            {...a11yProps(1)}
-          />
+          <Tab label="Login" {...a11yProps(0)} />
+          <Tab label="Register" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>

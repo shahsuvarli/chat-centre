@@ -187,11 +187,7 @@ const Register = () => {
                 setFieldValue("image", event.currentTarget.files[0]);
               }}
             />
-            <Button
-              id="register-button"
-              type="submit"
-              // sx={{ marginTop: 2, backgroundColor: "#128C7E" }}
-            >
+            <Button id="register-button" type="submit">
               Submit
             </Button>
             <ToastContainer />
