@@ -106,7 +106,7 @@ const Register = () => {
                           email: values.email,
                           password: values.password,
                           username: values.username,
-                          about: "Hey there! I am using whatsapp-clone.",
+                          about: "I'm a Chat-Centre user! 💬",
                           image: downloadURL,
                         };
                         await setDoc(userRef, userObject);

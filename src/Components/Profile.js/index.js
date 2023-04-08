@@ -40,7 +40,7 @@ function Profile() {
       </Box>
       <Typography className="profile-note" fontSize={14} color="#8696a0">
         This is not your username or pin. This name will be visible to your
-        WhatsApp contacts.
+        Chat Centre contacts.
       </Typography>
       <Box className="profile-about profile-box">
         <Typography fontSize={14} color="#216CA6">

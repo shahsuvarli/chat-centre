@@ -55,7 +55,7 @@ function NewChat() {
           );
         })}
         <Typography color={"#216CA6"} margin={3}>
-          CONTACTS ON WHATSAPP
+          CONTACTS ON CHAT CENTRE
         </Typography>
         <div className="newchat-card" onClick={() => handleChat(admin)}>
           <Avatar

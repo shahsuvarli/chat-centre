@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./App.css";
 import Auth from "./Components/Auth";
 import Loading from "./Components/Loading";
-import Whatsapp from "./Components/Whatsapp/Whatsapp";
+import ChatCentre from "./Components/ChatCentre/ChatCentre";
 import { useDispatch } from "react-redux";
 import { getAdmin } from "./store/user.js";
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      {loading ? <Loading /> : admin ? <Whatsapp /> : <Auth />}
+      {loading ? <Loading /> : admin ? <ChatCentre /> : <Auth />}
     </div>
   );
 }

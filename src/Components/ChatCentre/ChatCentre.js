@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import Chat from "../Chat/Chat";
 import Menu from "../Menu/Menu";
-import LeftDrawer from "../LeftDrawer.js";
+import LeftDrawer from "../LeftDrawer.js/index.js";
 import UserCard from "../UserCard/UserCard";
 import "./index.css";
 import RightDrawer from "../RightDrawer";
 import { connect, useDispatch } from "react-redux";
 import { getUsers } from "../../store/user";
 
-function Whatsapp(props) {
+function ChatCentre(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,4 +30,4 @@ const mapStateToProps = (state) => {
   return state.user.admin;
 };
 
-export default connect(mapStateToProps, null)(Whatsapp);
+export default connect(mapStateToProps, null)(ChatCentre);
