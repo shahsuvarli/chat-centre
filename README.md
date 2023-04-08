@@ -19,13 +19,14 @@ Technologies Used
 -   ReactJS
 -   Firebase Authentication
 -   Firebase Cloud Firestore
+-   Redux-Toolkit
+-   Material UI
 -   Netlify Hosting
 
 Features
 --------
 -   User authentication with Firebase Authentication
 -   Real-time chat messages using Firebase Cloud Firestore
--   Responsive design for mobile and desktop
 
 Installation
 ------------
@@ -44,7 +45,7 @@ Usage
 Credits
 -----
 
-This project was built as part of a ReactJS course.
+This is a demo version of the project I built for my client
 
 License
 -----
