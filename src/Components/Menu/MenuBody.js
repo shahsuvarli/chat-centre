@@ -4,7 +4,12 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { Box } from "@mui/system";
 import { Avatar, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getChats, handleRightDrawer, selectUser } from "../../store/user";
+import {
+  getChats,
+  handleLeftDrawer,
+  handleRightDrawer,
+  selectUser,
+} from "../../store/user";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
@@ -23,6 +28,10 @@ function MenuBody() {
   const handleUser = (person) => {
     dispatch(handleRightDrawer({ open: false, name: "" }));
     dispatch(selectUser(person));
+  };
+
+  const handleDrawer = (name) => {
+    dispatch(handleLeftDrawer({ open: true, name }));
   };
 
   return (
@@ -45,7 +54,7 @@ function MenuBody() {
       <div className="chats-container">
         {userChats
           .filter((chat) => chat.message.text !== "")
-          .filter((chat) => chat.user.username.toLowerCase().includes(search))
+          .filter((chat) => chat.user.username.toLowerCase().includes(search.toLowerCase()))
           .sort((a, b) => {
             return a.user.username.localeCompare(b.user.username);
           })
@@ -84,9 +93,15 @@ function MenuBody() {
           })}
         <div className="no-chat-display">
           <Typography lineHeight={2}>
-            Discover new chat partners easily by clicking on the top icon &nbsp;
-            <BsFillChatLeftTextFill size={20} />
-            &nbsp;.
+            Click on &nbsp;
+            <BsFillChatLeftTextFill
+              size={20}
+              color="#ff6961"
+              onClick={() => {
+                handleDrawer("New chat");
+              }}
+            />
+            &nbsp; and discover new people!
           </Typography>
         </div>
       </div>

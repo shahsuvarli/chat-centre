@@ -1,4 +1,4 @@
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import React from "react";
 import "./index.css";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
@@ -23,7 +23,7 @@ function MenuHeader() {
           sx={{ color: "#54646f", width: 27, height: 27 }}
           size={size}
           color="#54646f"
-          onClick={()=>dispatch(logout())}
+          onClick={() => dispatch(logout())}
         />
         <GroupsIcon
           sx={{ color: "#54646f", width: 27, height: 27 }}
@@ -35,12 +35,13 @@ function MenuHeader() {
         />
         <BsFillChatLeftTextFill
           size={size}
-          color="#54646f"
+          // color="rgb(33, 108, 166)"
+          color="#ff6961"
           onClick={() => {
             handleDrawer("New chat");
           }}
         />
-        <FiMoreVertical size={size} color="#54646f" />
+        {/* <FiMoreVertical size={size} color="#54646f" /> */}
       </div>
     </div>
   );

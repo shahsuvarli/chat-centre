@@ -11,7 +11,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
-const Register = () => {
+const Register = ({ value }) => {
   const [image, setImage] = React.useState();
   const inputs = [
     {

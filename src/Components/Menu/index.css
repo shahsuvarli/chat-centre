@@ -20,7 +20,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 170px;
+  width: 130px;
+  margin-right: 10px;
 }
 
 .menu-icons > *:hover {
